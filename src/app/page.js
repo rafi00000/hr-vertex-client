@@ -1,11 +1,11 @@
 import Banner from "@/Components/Banner";
+import Navber from "@/Components/Navber";
 import TopHeader from "@/Components/TopHeader";
-const Home = () =>{
+const Home = () => {
 
-  return(
+  return (
     <div>
-      <TopHeader/>
-      <Banner/>
+      <Banner />
     </div>
   )
 
