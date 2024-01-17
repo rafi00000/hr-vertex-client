@@ -1,9 +1,11 @@
-
+import Banner from "@/Components/Banner";
+import TopHeader from "@/Components/TopHeader";
 const Home = () =>{
 
   return(
     <div>
-      <p className="text-center font-bold text-4xl">this is home page</p>
+      <TopHeader/>
+      <Banner/>
     </div>
   )
 
