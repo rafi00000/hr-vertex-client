@@ -7,7 +7,7 @@ const Button = ({ text, textsize, textwidth, textcolor, background, padding, mar
             return console.log('no event handeler added in this button');
         }
         handeler(customid ? customid : '')
-    }} className={`${background ? background : 'bg-teal-300'} ${textcolor ? textcolor : 'text-gray-700 '} cursor-pointer hover:scale-105 active:scale-95 transition-all ${textsize ? textsize : 'text-base'} ${margin ? margin : 'px-8'}  ${padding ? padding : 'py-2'} uppercase rounded-sm ${textwidth ? textwidth : 'font-normal'}`}>
+    }} className={`${background || 'bg-teal-300'} ${textcolor || 'text-gray-700 '} cursor-pointer hover:scale-105 active:scale-95 transition-all ${textsize ? textsize : 'text-base'} ${margin ? margin : 'px-8'}  ${padding ? padding : 'py-2'} uppercase rounded-sm ${textwidth ? textwidth : 'font-normal'}`}>
         {text ? text : 'please send button text as props'}
     </button>
 }

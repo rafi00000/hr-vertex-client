@@ -3,9 +3,6 @@ import './globals.css'
 import TopHeader from '@/Components/SharedComponents/TopHeader'
 import Navber from '@/Components/SharedComponents/Navber'
 import Footer from '@/Components/SharedComponents/Footer'
-import TopHeader from '@/Components/TopHeader'
-import Navber from '@/Components/Navber'
-import Footer from '@/Components/Footer'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -20,7 +17,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <div className='top-0 left-0 absolute w-full z-50'>
-        <div className='top-0 left-0 absolute w-full'>
           <TopHeader />
           <Navber />
         </div>

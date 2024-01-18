@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import Button from '../ClintSideComponents/button'
+import Button from '@/Components/ClintSideComponents/Button'
 
 const RecruitmentNotice = () => {
     return (
