@@ -7,7 +7,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa6";
 const TopHeader = () => {
     return (
-        <div className='sm:flex justify-between items-center text-teal-500  container mx-auto gap-2 '>
+        <div className=' justify-between items-center text-teal-500  container mx-auto gap-2 '>
             <div className='md:flex justify-start items-center gap-2 '>
                 <a className='flex justify-start items-center gap-1 py-2 pl-2' href='mailto:shaharulsiyam0273@gmail.com'><HiOutlineMailOpen /> shaharulsiyam0273@gmail.com</a>
                 <span className='flex justify-start items-center gap-1  py-2 pl-2'><MdOutlineLocationOn />  12 Tottina, NY, USA</span>

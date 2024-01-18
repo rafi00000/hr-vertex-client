@@ -16,11 +16,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='top-0 left-0 absolute w-full z-50'>
+        <div className=' w-full z-50'>
           <TopHeader />
           <Navber />
         </div>
+        <div className='min-h-screen'>
         {children}
+        </div>
         <Footer />
       </body>
     </html>
