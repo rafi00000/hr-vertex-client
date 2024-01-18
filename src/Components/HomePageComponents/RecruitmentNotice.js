@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import Button from '../ClintSideComponents/button'
 
-const RecuirmentsNotice = () => {
+const RecruitmentNotice = () => {
     return (
         <div className='bg-black bg-opacity-5 py-24'>
             <h3 className='text-center text-4xl uppercase font-semibold text-teal-500 mb-20'>
@@ -16,14 +16,14 @@ const RecuirmentsNotice = () => {
                     <h4 className='text-2xl font-semibold'>
                         Want to start career?
                     </h4>
-                    <p className='font-medium opacity-80 pb-8 pt-2'>
+                    <p className='font-medium  opacity-80 pb-8 pt-2'>
                         Discover the future of talent acquisition. Our cutting-edge HR system transforms the hiring process, from sourcing to onboarding. Elevate efficiency, foster collaboration, and drive success with streamlined workforce strategies.
                     </p>
-                    <Button text='Apply now '/>
+                    <Button textwidth='font-bold' text='see notice '/>
                 </div>
             </div>
         </div>
     )
 }
 
-export default RecuirmentsNotice
+export default RecruitmentNotice

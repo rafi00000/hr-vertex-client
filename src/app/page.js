@@ -1,12 +1,13 @@
 import Banner from "@/Components/HomePageComponents/Banner";
-import RecuirmentsNotice from "@/Components/HomePageComponents/RecuirmentsNotice";
+import RecruitmentNotice from "@/Components/HomePageComponents/RecruitmentNotice";
+
 
 const Home = () => {
 
   return (
     <div>
       <Banner />
-      <RecuirmentsNotice/>
+      <RecruitmentNotice/>
     </div>
   )
 
