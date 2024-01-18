@@ -1,8 +1,8 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
-import TopHeader from '@/Components/TopHeader'
-import Navber from '@/Components/Navber'
-import Footer from '@/Components/Footer'
+import TopHeader from '@/Components/SharedComponents/TopHeader'
+import Navber from '@/Components/SharedComponents/Navber'
+import Footer from '@/Components/SharedComponents/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='top-0 left-0 absolute w-full'>
+        <div className='top-0 left-0 absolute w-full z-50'>
           <TopHeader />
           <Navber />
         </div>
