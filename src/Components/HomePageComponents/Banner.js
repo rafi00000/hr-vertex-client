@@ -5,7 +5,7 @@ const Banner = () => {
     return (
         <div className='bg-[url("https://i.ibb.co/N1VHksh/Black-And-Red-Modern-Business-Human-Resource-Management-Presentation.png")] w-full min-h-screen'>
             <div className=' relative container mx-auto'>
-                <span className=' block md:py-44 py-40 lg:py-56'>
+                <span className=' block md:py-36 py-40 '>
                     <h2 className='lg:text-5xl md:text-3xl text-2xl text-teal-300 max-w-[600px] pt-8 '>
                         human resource management system
                     </h2>
