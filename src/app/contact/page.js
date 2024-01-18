@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/Components/ClintSideComponents/Button";
 import Image from "next/image";
 
 const ContactPage = () => {
@@ -22,7 +23,9 @@ const ContactPage = () => {
         <Image
           alt="banner-bg"
           className="bg-teal-300 w-full h-full"
-          src=""
+          src="https://i.ibb.co/N1VHksh/Black-And-Red-Modern-Business-Human-Resource-Management-Presentation.png"
+          width={500}
+          height={500}
         ></Image>
         <p className="text-5xl font-bold absolute  text-white">Contact Page</p>
       </div>
@@ -60,13 +63,13 @@ const ContactPage = () => {
         </div>
         <div className="form-control w-full">
           <label className="text-md font-semibold">Message</label>
-          <textarea name="message" id="" cols="30" rows="10" className="input input-bordered p-4">
+          <textarea name="message" placeholder="Enter your message here" id="" cols="30" rows="10" className="input input-bordered p-4">
             
           </textarea>
         </div>
         
         <div className="flex justify-center">
-          <input type="submit" value="Submit" className="btn btn-outline " />
+          <Button text={"Submit"} className="font-bold"></Button>
         </div>
 
       </form>

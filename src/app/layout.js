@@ -1,5 +1,9 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
+import TopHeader from '@/Components/SharedComponents/TopHeader'
+import Navber from '@/Components/SharedComponents/Navber'
+import Footer from '@/Components/SharedComponents/Footer'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,7 +15,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className=' w-full z-50'>
+          <TopHeader />
+          <Navber />
+        </div>
+        <div className='min-h-screen'>
+        {children}
+        </div>
+        <Footer />
+      </body>
     </html>
   )
 }

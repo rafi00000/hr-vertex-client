@@ -3,12 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
-
 *{
     font-family: 'Poppins', sans-serif;
 }
 
 body{
     max-width: 1366px;
-    margin: auto;
+    margin: 0px auto;
+}
+
+#meinmenu{
+    transition: 1s ease all;
 }
