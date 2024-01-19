@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@/Components/ClintSideComponents/Button";
-import Image from "next/image";
 
 const ContactPage = () => {
   const handleForm = (e) => {
@@ -19,17 +18,10 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen">
       {/* banner here we will add a bg picture */}
-      <div className="relative flex justify-center items-center h-[180px]">
-        <Image
-          alt="banner-bg"
-          className="bg-teal-300 w-full h-full"
-          src="https://i.ibb.co/N1VHksh/Black-And-Red-Modern-Business-Human-Resource-Management-Presentation.png"
-          width={500}
-          height={500}
-        ></Image>
-        <p className="text-5xl font-bold absolute  text-white">Contact Page</p>
+      <div className=" bg-[url('https://i.ibb.co/N1VHksh/Black-And-Red-Modern-Business-Human-Resource-Management-Presentation.png')] md:py-36 py-48">
+
+        <p className="md:text-5xl text-3xl font-bold text-center block  text-white">Contact Page</p> 
       </div>
-      {/* contact form */}
       <form
         className="p-5 border w-3/4 lg:w-1/2 mx-auto my-4 space-y-4 rounded-lg "
         onSubmit={handleForm}

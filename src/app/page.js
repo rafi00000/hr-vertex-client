@@ -4,7 +4,6 @@ import RecruitmentNotice from "@/Components/HomePageComponents/RecruitmentNotice
 
 
 const Home = () => {
-
   return (
     <div>
       <Banner />
