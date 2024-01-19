@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className=' w-full z-50'>
+        <div className='absolute left-0 w-full z-50'>
           <TopHeader />
           <Navber />
         </div>

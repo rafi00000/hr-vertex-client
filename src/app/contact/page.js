@@ -17,7 +17,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-32">
       {/* banner here we will add a bg picture */}
       <div className="relative flex justify-center items-center h-[180px]">
         <Image
@@ -63,7 +63,7 @@ const ContactPage = () => {
         </div>
         <div className="form-control w-full">
           <label className="text-md font-semibold">Message</label>
-          <textarea name="message" placeholder="Enter your message here" id="" cols="30" rows="10" className="input input-bordered p-4">
+          <textarea name="message" placeholder="Enter your message here" id="" cols="30" rows="10" className="input input-bordered p-4 resize-none">
             
           </textarea>
         </div>
