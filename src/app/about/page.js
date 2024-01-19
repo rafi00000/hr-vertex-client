@@ -9,18 +9,18 @@ import { HiUserGroup } from "react-icons/hi";
 const AboutPage = () => {
 
     return (
-        <div className="mt-4 md:mx-10 ">
+        <div className="mt-5 ">
 
             <div className="mask-parallelogram bg-red-700  w-full px-10 md:px-56 h-8 lg:h-16"  ></div>
 
-            <div className="mt-3 md:mt-5 w-full  md:flex gap-5 lg:p-20 ">
+            <div className="mt-3 md:mt-2 w-full  md:flex gap-5 lg:p-20 ">
 
-                <div className=" ml-10 lg:w-[60%] mx-auto  lg:ml-14 pt-9">
+                <div className=" ml-10 lg:w-[60%] mx-auto  lg:ml-14 pt-5">
                     <div className="flex gap-2 items-center">
                         <HiUserGroup size={28}></HiUserGroup>
                         <p className="font-extrabold text-2xl text-teal-500">About Company</p>
                     </div>
-                    <p className=" text-xs md:text-base font-medium pt-4 md:pt-8 pr-4 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, nemo veritatis omnis temporibus, est voluptates vero accusantium modi officia culpa porro laboriosam ab necessitatibus repellendus impedit autem perspiciatis ullam pariatur sapiente velit illum officiis. Eum, perspiciatis iure. Delectus facere minus maiores laboriosam aliquam nam ad, sunt inventore laborum perspiciatis quia blanditiis dicta quibusdam! Tenetur impedit asperiores odio quaerat perferendis, enim a accusantium quo magnam dolorum velit molestias explicabo deserunt vel quasi consequatur iusto sequi qui ad quia sit incidunt pariatur nam? Laudantium tenetur mollitia maxime ullam laborum voluptatem amet quos. Officia quis soluta provident? Rerum accusantium neque minima amet aliquid.</p>
+                    <p className=" text-xs md:text-base font-medium pt-4 md:pt-8 pr-4 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, nemo veritatis omnis temporibus, est voluptates vero accusantium modi officia culpa porro laboriosam ab necessitatibus repellendus impedit autem perspiciatis ullam pariatur sapiente velit illum officiis. Eum, perspiciatis iure. Delectus facere minus maiores laboriosam aliquam nam ad, sunt inventore laborum perspiciatis quia blanditiis dicta quibusdam! Tenetur impedit asperiores odio quaerat perferendis, enim a accusantium quo magnam dolorum velit molestias explicabo deserunt vel quasi consequatur iusto sequi qui ad quia sit </p>
                 </div>
 
                 <div className="mt-8 w-[85%]  lg:w-[50%] mx-auto  md:ml-32">
@@ -40,16 +40,17 @@ const AboutPage = () => {
             </div>
 
             <div className=" mt-10 mb-10">
-                <h1 className="font-semibold text-3xl text-center">Peoples</h1>
+                <h1 className="font-semibold text-3xl text-center text-teal-400 ">Peoples</h1>
 
-                <div className=" md:flex w-[50%] md:w-[80%] mx-auto pt-10">
-                    <img className="w-[300px] mx-auto border p-2" src='https://i.ibb.co/zR39ctJ/elegant-businessman-office-155003-9641.jpg' alt="" />
-                    <img className=" md:w-[300px] mx-auto border p-2" src='https://i.ibb.co/7t2zYJY/handsome-corporate-man-real-estate-agent-assistant-smiling-hold-hands-together-how-may-i-help-you-sm.jpg' alt="" />
+                <div className="  md:flex w-[70%] md:w-[80%] mx-auto pt-10">
+                    <img className="  w-[300px] mx-auto border p-2" src='https://i.ibb.co/zR39ctJ/elegant-businessman-office-155003-9641.jpg' alt="" />
+                    <img className="my-6 md:my-0 md:w-[300px] mx-auto border p-2" src='https://i.ibb.co/7t2zYJY/handsome-corporate-man-real-estate-agent-assistant-smiling-hold-hands-together-how-may-i-help-you-sm.jpg' alt="" />
 
                     <img className="md:w-[300px] mx-auto border p-2" src='https://i.ibb.co/zR39ctJ/elegant-businessman-office-155003-9641.jpg' alt="" />
 
                 </div>
             </div>
+            <div className="mask-parallelogram bg-red-700  w-full mt-8 px-10 md:px-56 h-8 lg:h-16 mb-3"  ></div>
         </div>
     );
 };

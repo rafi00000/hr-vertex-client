@@ -1,11 +1,16 @@
 
-const Home = () =>{
+import Banner from "@/Components/HomePageComponents/Banner";
+import RecruitmentNotice from "@/Components/HomePageComponents/RecruitmentNotice";
 
-  return(
+
+const Home = () => {
+
+  return (
     <div>
-      <p className="text-center font-bold text-4xl">this is home page</p>
-    </div>
-  )
+      <Banner />
+      <RecruitmentNotice/>
+      </div>
+    )
 
 };
 
