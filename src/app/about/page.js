@@ -5,7 +5,7 @@ const AboutPage = () => {
     return (
         <>
             <div className="bg-[url('https://i.ibb.co/N1VHksh/Black-And-Red-Modern-Business-Human-Resource-Management-Presentation.png')] bg-opacity-10 ">
-                <div className="mx-auto md:py-36 py-44 container md:grid grid-cols-2 items-center justify-between">
+                <div className="mx-auto md:py-36 py-44 container md:grid grid-cols-2 gap-4 items-center justify-between">
                     <div>
                         <div className="flex gap-2 items-center text-teal-500">
                             <HiUserGroup size={28}></HiUserGroup>
