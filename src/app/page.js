@@ -11,7 +11,6 @@ const Home = () => {
       <RecruitmentNotice />
     </div>
   )
-
 };
 
 export default Home;

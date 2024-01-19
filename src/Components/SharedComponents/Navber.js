@@ -5,13 +5,14 @@ import { IoMenuSharp } from "react-icons/io5";
 import Button from "@/Components/ClintSideComponents/Button";
 const Navber = () => {
   const [show, setshow] = useState(false)
+  
   const showmenu = () => {
     setshow(!show)
   }
   // console.log(show);
   return (
     <div className=' border-t text-teal-500 py-2 container mx-auto relative'>
-      <div id='meinmenu' className={`transition-all overflow-hidden ${show ? 'flex flex-col justify-center items-start opacity-100 h-auto w-64 p-4 shadow-2xl rounded-lg  bg-teal-500 text-black' : 'w-0 h-0 opacity-0'} md:h-auto md:w-auto opacity-100 md:flex md:justify-between md:items-center py-2 `}>
+      <div id='meinmenu' className={`transition-all overflow-hidden ${show ? 'flex flex-col justify-center items-start opacity-100 h-auto w-64 p-4 shadow-2xl rounded-lg bg-teal-500 text-black' : 'w-0 h-0 opacity-0'} md:h-auto md:w-auto opacity-100 md:flex md:justify-between md:items-center py-2 `}>
         <span className='font-bold text-4xl '>
           hr-vertex
         </span>

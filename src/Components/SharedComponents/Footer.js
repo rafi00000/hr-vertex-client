@@ -5,7 +5,7 @@ import { MdOutlineLocationOn } from 'react-icons/md'
 import { MdOutlinePhoneInTalk } from "react-icons/md";
 const Footer = () => {
     return (
-        <footer className="p-6 text-teal-700 container mx-auto">
+        <footer className="p-6 text-teal-700 container mx-auto border">
             <div className="container sm:grid grid-cols-2 mx-auto gap-x-3 gap-y-8 sm:grid-cols-3 md:grid-cols-4 items-start justify-center">
 
                 <div className="flex flex-col my-2  ">
