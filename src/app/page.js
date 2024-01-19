@@ -8,15 +8,7 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <RecruitmentNotice/>
-
-import Banner from "@/Components/Banner";
-
-const Home = () => {
-
-  return (
-    <div>
-      <Banner />
+      <RecruitmentNotice />
     </div>
   )
 
