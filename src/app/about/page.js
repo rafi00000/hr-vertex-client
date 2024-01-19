@@ -1,20 +1,12 @@
 import { HiUserGroup } from "react-icons/hi";
 
 // import img1 from "../../../public/elegant-businessman-office_155003-9641 (1).avif"
-
-
-
-
-
 const AboutPage = () => {
 
     return (
-        <div className="mt-5 ">
-
-            <div className="mask-parallelogram bg-red-700  w-full px-10 md:px-56 h-8 lg:h-16"  ></div>
-
+        <div className="pt-48 md:pt-28">
+            <div className="mask-parallelogram bg-red-700 w-full px-10 md:px-56 h-8 lg:h-16" ></div>
             <div className="mt-3 md:mt-2 w-full  md:flex gap-5 lg:p-20 ">
-
                 <div className=" ml-10 lg:w-[60%] mx-auto  lg:ml-14 pt-5">
                     <div className="flex gap-2 items-center">
                         <HiUserGroup size={28}></HiUserGroup>

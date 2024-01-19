@@ -10,9 +10,9 @@ const RecruitmentNotice = () => {
             </h3>
             <div className='container mx-auto md:grid grid-cols-2 gap-10 items-center text-teal-700'>
                 <div>
-                    <Image src='https://i.ibb.co/jgdsFmH/demand-for-white-collar-talent-up-5-in-june-as-non-tech-hiring-picks-up-1.png' className='w-full' width={2000} height={2000} />
+                    <Image alt='' src='https://i.ibb.co/jgdsFmH/demand-for-white-collar-talent-up-5-in-june-as-non-tech-hiring-picks-up-1.png' className='w-full' width={2000} height={2000} />
                 </div>
-                <div>
+                <div className='px-6'>
                     <h4 className='text-2xl font-semibold'>
                         Want to start career?
                     </h4>

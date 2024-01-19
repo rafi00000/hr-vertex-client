@@ -4,7 +4,7 @@ import React from 'react'
 const Banner = () => {
     return (
         <div className='bg-[url("https://i.ibb.co/N1VHksh/Black-And-Red-Modern-Business-Human-Resource-Management-Presentation.png")] w-full'>
-            <div className=' relative container mx-auto'>
+            <div className='relative container mx-auto px-6'>
                 <span className=' block md:py-36 py-40 '>
                     <h2 className='lg:text-5xl md:text-3xl text-2xl text-teal-300 max-w-[600px] pt-8 '>
                         human resource management system
