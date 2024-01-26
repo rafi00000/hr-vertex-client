@@ -1,11 +1,13 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { IoMenuSharp } from "react-icons/io5";
 import Button from "@/Components/ClintSideComponents/Button";
+import { coreContext } from '@/provider/AuthContext';
 
 const Navber = () => {
-
+  const { user, logOut } = useContext(coreContext)
+  // console.log(user?.displayName)
   const [show, setshow] = useState(false)
 
   const showmenu = () => {
@@ -29,12 +31,20 @@ const Navber = () => {
             contact
           </Link>
           <Link className='hover:scale-105 active:scale-95' href='/dashboard'>
-          dashboard
+            dashboard
           </Link>
         </div>
-        <Link href='/login'>
-        <Button text={'SING IN'} />
-        </Link>
+        <div className='flex justify-end items-center gap-2'>
+          {
+            user?.displayName ? <>
+              <span>{user?.displayName}</span>
+              <Button handeler={logOut} text='sign out' />
+            </> : <Link href='/login'>
+              <Button text={'SING IN'} />
+            </Link>
+          }
+        </div>
+
       </div>
       <span className={`md:hidden flex justify-between items-center ml-auto absolute w-full top-3 `}>
         < span className={`font-bold text-4xl ${show ? 'h-0 w-0' : 'h-auto w-auto'} overflow-hidden`}>

@@ -1,52 +1,56 @@
-import useAxiosSecure from '@/app/axiosConfig/useAxiosSecure'
+import Button from '@/Components/ClintSideComponents/Button';
+import useAxiosSecure from '@/axiosConfig/useAxiosSecure'
 import React from 'react'
 
-const page = async () => {
+const usePage = async () => {
     const axiosSecure = useAxiosSecure();
 
     try {
-        const userData = await axiosSecure.get('/user', { next: { revalidate: 3600 } });
+        const res = await axiosSecure.get('/users', { next: { revalidate: 3600 } });
+        const userData = res.data
+        // console.log(userData)
+        return (
+            <div className="overflow-x-auto" >
+                <h3 className='uppercase text-3xl font-bold pt-10 pb-3 text-center'>all employees</h3>
+                <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th className='font-bold'>Name</th>
+                            <th className='font-bold'>email</th>
+                            <th className='font-bold'>gender </th>
+                            <th className='font-bold'>salary </th>
+                            <th className='font-bold'>leaves </th>
+                            <th className='font-bold'>loan </th>
+                            <th className='font-bold'>action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            userData.map(item => <tr key={item?._id} className="bg-base-200">
+                                <td>{item?.name}</td>
+                                <td>{item?.email}</td>
+                                <td>{item?.gender}</td>
+                                <td>{item?.salary}</td>
+                                <td>{item?.leaves}</td>
+                                <td>{item?.loan}</td>
+                                <td>
+                                    <Button text='delete' />
+                                </td>
+                                
+                            </tr>)
+                        }
 
-        return ( 
-            <div className = "overflow-x-auto" >
-            <table className="table">
-                {/* head */}
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>email</th>
-                        <th>role </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* row 1 */}
-                    <tr className="bg-base-200">
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                    </tr>
-                    {/* row 2 */}
-                    <tr>
-                        <td>Hart Hagerty</td>
-                        <td>Desktop Support Technician</td>
-                        <td>Purple</td>
-                    </tr>
-                    {/* row 3 */}
-                    <tr>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
-                    </tr>
-                </tbody>
-            </table>
-</div >
-        
-      );
+                    </tbody>
+                </table>
+            </div >
+
+        );
     } catch (error) {
-    // Handle error appropriately
-    console.error("Error fetching user data:", error);
-    return <div className='text-center text-4xl font-bold py-20'>Error loading user data</div>;
-}
-  };
+        // Handle error appropriately
+        console.error("Error fetching user data:", error);
+        return <div className='text-center text-4xl font-bold py-20'>Error loading user data</div>;
+    }
+};
 
-export default page
+export default usePage

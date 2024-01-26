@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import Button from '@/Components/ClintSideComponents/Button'
+import Link from 'next/link'
 
 const RecruitmentNotice = () => {
     return (
@@ -19,7 +20,9 @@ const RecruitmentNotice = () => {
                     <p className='font-medium  opacity-80 pb-8 pt-2'>
                         Discover the future of talent acquisition. Our cutting-edge HR system transforms the hiring process, from sourcing to onboarding. Elevate efficiency, foster collaboration, and drive success with streamlined workforce strategies.
                     </p>
+                    <Link href={'/notice'}>
                     <Button textwidth='font-bold' text='see notice '/>
+                    </Link>
                 </div>
             </div>
         </div>
