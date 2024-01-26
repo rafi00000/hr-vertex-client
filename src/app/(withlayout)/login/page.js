@@ -1,40 +1,47 @@
 "use client";
 import { coreContext } from "@/provider/AuthContext";
 import Link from "next/link";
-import { useContext } from "react";
+import { useRouter } from "next/navigation";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
-const LoginPage = () => {
+const useLoginPage = () => {
+    const router = useRouter()
     const { logIn, googleLogIn } = useContext(coreContext)
+    const [loading, setloading] = useState(false)   
     const handleForm = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+       try {
         logIn(email, password)
-            .then((userCredential) => {
-                setloading(false)
-                const user = userCredential.user;
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: `logged in user succesfuly`,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-
-            })
-            .catch((error) => {
-                setloading(false)
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: `${error.message}`,
-                    footer: 'unable to log in user'
-                });
+        .then((userCredential) => {
+            setloading(false)
+            const user = userCredential.user;
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `logged in user succesfuly`,
+                showConfirmButton: false,
+                timer: 1500
             });
+            router.push('/')
+        })
+        .catch((error) => {
+            setloading(false)
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `${error.message}`,
+                footer: 'unable to log in user'
+            });
+        });
+       } catch (error) {
+        console.log(error)
+       }
     };
     const loginwithgoogle = () => {
         googleLogIn()
@@ -47,12 +54,6 @@ const LoginPage = () => {
                     role: "user",
                     emailVerified: user.emailVerified
                 }
-                axiosrequest.post('/users', userData)
-                    // setloading(false)
-                    .then((res) => {
-                        navigate('/')
-                    })
-                console.log(userData)
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -109,11 +110,11 @@ const LoginPage = () => {
                     <button onClick={loginwithgoogle} className="w-full btn  text-black bg-teal-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2 text-center"><FcGoogle></FcGoogle> GOOGLE</button>
                 </div>
                 <p className="text-sm pt-2 font-light text-gray-500 dark:text-gray-400">
-                    don't have an account? <Link href="/register" className="font-medium text-primary-600 hover:underline "><span className="text-blue-700">sign up here</span></Link>
+                    don t have an account? <Link href="/register" className="font-medium text-primary-600 hover:underline "><span className="text-blue-700">sign up here</span></Link>
                 </p>
             </div></>
 
     );
 };
 
-export default LoginPage;
+export default useLoginPage;

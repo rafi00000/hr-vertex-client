@@ -1,23 +1,21 @@
 "use client";
-
-import Button from '@/Components/ClintSideComponents/Button';
 import { useContext, useState } from "react";
 import { FaEyeSlash, FaEye } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
 import { coreContext } from '@/provider/AuthContext';
-import useAxiosRequest from '@/app/axiosConfig/useAxiosRequest';
+import useAxiosRequest from '@/axiosConfig/useAxiosRequest';
 import { updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2';
 import Link from 'next/link';
-
+import { useRouter } from "next/navigation";
 const RegisterPage = () => {
+    const router = useRouter()
     const [loading, setloading] = useState(false)
     const axiosrequest = useAxiosRequest()
     const { createUserEmail, googleLogIn } = useContext(coreContext)
     const [showpassword, setshowpassword] = useState(false)
     const imageapikey = process.env.VITE_IMAGE_API_KEY;
-    const image_hosting_api = `https://api.imgbb.com/1/upload?key=${imageapikey}`;
+    const image_hosting_api = `https://api.imgbb.com/1/upload?key=5201d474546c521dc75dd9c96eea7a84`;
     const HandelSubmit = async (e) => {
         e.preventDefault()
         const form = e.target;
@@ -35,29 +33,21 @@ const RegisterPage = () => {
         } else if (!/[@,$,#,%,&]/.test(password)) {
             alert('password should have a one spaical characters')
         }
+        console.log(image_hosting_api)
         const res = await axiosrequest.post(image_hosting_api, { image: photo }, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         })
+        console.log(res.data);
         if (res.data.success) {
-            createUserEmail(data.email, data.password)
+            createUserEmail(email, password)
                 .then((userCredential) => {
                     const user = userCredential.user;
                     updateProfile(userCredential.user, {
                         displayName: name, photoURL: res.data.data.display_url
                     }).then(() => {
-                        const userData = {
-                            profileImage: res.data.data.display_url,
-                            username: data.name,
-                            useremail: data.email,
-                            role: "user",
-                            emailVerified: false
-                        }
-                        // console.log(userData)
-                        axiosrequest.post('/users', userData)
-                            .then((res) => {
-                                setloading(false)
+                        setloading(false)
                                 Swal.fire({
                                     position: "top-end",
                                     icon: "success",
@@ -65,7 +55,7 @@ const RegisterPage = () => {
                                     showConfirmButton: false,
                                     timer: 1500
                                 });
-                            })
+                                router.push('/')
 
                     }).catch((error) => {
                         setloading(false)
@@ -102,20 +92,6 @@ const RegisterPage = () => {
     const loginwithgoogle = () => {
         googleLogIn()
             .then((result) => {
-                const user = result.user;
-                const userData = {
-                    profileImage: user.photoURL,
-                    username: user.displayName,
-                    useremail: user.email,
-                    role: "user",
-                    emailVerified: user.emailVerified
-                }
-                axiosrequest.post('/users', userData)
-                    // setloading(false)
-                    .then((res) => {
-                        // navigate('/')
-                    })
-                console.log(userData)
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
