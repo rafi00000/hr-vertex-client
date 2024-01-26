@@ -18,7 +18,7 @@ const usePage = async ({ params }) => {
                 <p className='font-semibold pt-2'>requirements :  </p>
                 <p className='py-1 opacity-80'>{data?.requirements}</p>
                 <p className='font-semibold pt-2'>deadline :</p>
-                <p className='pb-3 font-extrabold'>{data?.applicationDeadline.split('T')[0]}
+                <p className='pb-3 font-extrabold'>{data?.applicationDeadline?.split('T')[0]}
                 </p>
               <span className='flex justify-end items-center'>
               <Button text='apply now' />
