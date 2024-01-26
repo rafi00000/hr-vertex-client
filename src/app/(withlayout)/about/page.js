@@ -13,7 +13,7 @@ const AboutPage = () => {
                         </div>
                         <p className=" text-xs md:text-base font-medium max-w-[600px] pt-3 text-teal-500 opacity-80">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, nemo veritatis omnis temporibus, est voluptates vero accusantium modi officia culpa porro laboriosam ab necessitatibus repellendus impedit autem perspiciatis ullam pariatur sapiente velit illum officiis. Eum, perspiciatis iure. Delectus facere minus maiores laboriosam aliquam nam ad, sunt inventore laborum perspiciatis quia blanditiis dicta quibusdam! Tenetur impedit asperiores odio quaerat perferendis, enim a accusantium quo magnam dolorum velit molestias explicabo deserunt vel quasi consequatur iusto sequi qui ad quia sit </p>
                     </div>
-                    <Image className="w-full h-full" src='https://i.ibb.co/XkcBKtm/blog-header.jpg' height={500} width={500} alt="img"/>
+                    <Image className="w-full h-full mask mask-hexagon-2" src='https://i.ibb.co/XkcBKtm/blog-header.jpg' height={500} width={500} alt="img"/>
                 </div>
             </div>
 

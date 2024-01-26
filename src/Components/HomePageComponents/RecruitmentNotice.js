@@ -5,10 +5,10 @@ import Button from '@/Components/ClintSideComponents/Button'
 const RecruitmentNotice = () => {
     return (
         <div className='bg-black bg-opacity-5 py-24'>
-            <h3 className='text-center text-4xl uppercase font-semibold text-teal-500 mb-20'>
+            <h3 className='text-center text-4xl uppercase font-semibold text-black mb-20'>
                 Requirement notice
             </h3>
-            <div className='container mx-auto md:grid grid-cols-2 gap-10 items-center text-teal-700'>
+            <div className='container mx-auto md:grid grid-cols-2 gap-10 items-center text-black'>
                 <div>
                     <Image alt='img' src='https://i.ibb.co/jgdsFmH/demand-for-white-collar-talent-up-5-in-june-as-non-tech-hiring-picks-up-1.png' className='w-full' width={2000} height={2000} />
                 </div>
