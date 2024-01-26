@@ -20,7 +20,7 @@ const ContactPage = () => {
       {/* banner here we will add a bg picture */}
       <div className=" bg-[url('https://i.ibb.co/N1VHksh/Black-And-Red-Modern-Business-Human-Resource-Management-Presentation.png')] md:py-36 py-48">
 
-        <p className="md:text-5xl text-3xl font-bold text-center block  text-white">Contact Page</p> 
+        <p className="md:text-5xl text-3xl font-bold text-center block uppercase text-white">Contact us</p> 
       </div>
       <form
         className="p-5 border w-3/4 lg:w-1/2 mx-auto my-4 space-y-4 rounded-lg "

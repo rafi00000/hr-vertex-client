@@ -5,7 +5,7 @@ import { MdOutlineLocationOn } from 'react-icons/md'
 import { MdOutlinePhoneInTalk } from "react-icons/md";
 const Footer = () => {
     return (
-        <footer className="p-6 text-teal-700 container mx-auto border">
+        <footer className="p-6 text-black mx-auto">
             <div className="container sm:grid grid-cols-2 mx-auto gap-x-3 gap-y-8 sm:grid-cols-3 md:grid-cols-4 items-start justify-center">
 
                 <div className="flex flex-col my-2  ">
@@ -39,7 +39,7 @@ const Footer = () => {
                 </div>
                 <div className="flex flex-col my-2 ">
                     <h2 className="font-medium">address</h2>
-                    <div className="flex sm:flex-col flex-wrap gap-1 text-sm dark:text-teal-400">
+                    <div className="flex sm:flex-col flex-wrap gap-1 text-sm dark:text-blacK">
                         <span className='flex justify-start items-center gap-1  py-2 pl-2'><MdOutlineLocationOn />  12 Tottina, NY, USA</span>
                         <a className='flex justify-start items-center gap-1 py-2 pl-2' href='mailto:shaharulsiyam0273@gmail.com'><HiOutlineMailOpen /> shaharulsiyam0273@gmail.com</a>
                         <a className='flex justify-start items-center gap-1 py-2 pl-2' href='tel:+8801566026301'><MdOutlinePhoneInTalk /> shaharulsiyam0273@gmail.com</a>

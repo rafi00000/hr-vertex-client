@@ -5,10 +5,10 @@ import TopHeader from "@/Components/SharedComponents/TopHeader";
 export default function Layout({ children }) {
     return (
         <>
-            <div className='top-0 left-0 absolute z-50 w-full'>
-                <TopHeader />
-                <Navber />
-            </div>
+            {/* <div className='top-0 left-0 absolute z-50 w-full'> */}
+            <TopHeader />
+            <Navber />
+            {/* </div> */}
             {children}
             <Footer />
         </>
