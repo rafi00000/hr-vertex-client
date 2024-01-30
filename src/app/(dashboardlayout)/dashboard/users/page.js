@@ -6,7 +6,7 @@ const usePage = async () => {
     const axiosSecure = useAxiosSecure();
 
     try {
-        const res = await axiosSecure.get('/users', { next: { revalidate: 3600 } });
+        const res = await axiosSecure.get('/users', { params: { next: { revalidate: 100 } } });
         const userData = res.data
         // console.log(userData)
         return (
@@ -37,7 +37,7 @@ const usePage = async () => {
                                 <td>
                                     <Button text='delete' />
                                 </td>
-                                
+
                             </tr>)
                         }
 
