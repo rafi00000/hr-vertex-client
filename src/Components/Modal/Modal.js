@@ -26,25 +26,21 @@ const modal = () => {
 
     return (
         <div>
-
-            <button className="btn btn-accent" onClick={() => document.getElementById('my_modal_4').showModal()}>Apply Now</button>
-            <dialog id="my_modal_4" className="modal">
-                <div className="modal-box w-11/12 max-w-2xl p-10">
-
-
+            <label htmlFor="my_modal_6" className="btn btn-accent">Apply Now</label>
+            <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+            <div className="modal" role="dialog">
+                <div className="modal-box">
                     <div>
                         <form onSubmit={handleSubmit}>
                             <div className="form-control w-full">
                                 <label className="text-md font-semibold">Full Name</label>
                                 <input
                                     type="text"
-                              defaultValue={"jj"}
+                                    defaultValue={ user?.email}
                                     className="input input-bordered"
                                     name="fullName"
                                     value={formData.fullName}
-
-
-                                // required
+                                    required
                                 />
                             </div>
                             <div className="form-control w-full">
@@ -55,8 +51,7 @@ const modal = () => {
                                     className="input input-bordered"
                                     name="emailAddress"
                                     value={formData.emailAddress}
-
-                                // required
+                                    required
                                 />
                             </div>
                             <div className="form-control w-full">
@@ -67,19 +62,17 @@ const modal = () => {
                                     className="input input-bordered"
                                     name="phoneNumber"
                                     value={formData.phoneNumber}
-
-                                // required
+                                    required
                                 />
                             </div>
                             <div className="form-control w-full">
                                 <label className="text-md font-semibold">Address</label>
-                                <textarea
+                                <input
                                     placeholder="Enter your address"
                                     className="input input-bordered"
                                     name="address"
                                     value={formData.address}
-
-                                // required
+                                    required
                                 />
                             </div>
                             <div className="form-control w-full">
@@ -90,31 +83,28 @@ const modal = () => {
                                     className="input input-bordered"
                                     name="education"
                                     value={formData.education}
-
-                                // required
+                                    required
                                 />
                             </div>
                             <div className="form-control w-full">
                                 <label className="text-md font-semibold">Work Experience</label>
-                                <textarea
+                                <input
                                     placeholder="Enter your work experience"
                                     className="input input-bordered"
                                     name="workExperience"
                                     value={formData.workExperience}
-
-                                // required
+                                    required
                                 />
                             </div>
 
                             <div className="form-control w-full">
                                 <label className="text-md font-semibold">CV Link</label>
-                                <textarea
+                                <input
                                     placeholder="Enter your link"
                                     className="input input-bordered"
                                     name="cv"
                                     value={formData.cv}
-
-                                // required
+                                    required
                                 />
                             </div>
                             <div className="form-control w-full">
@@ -122,14 +112,12 @@ const modal = () => {
                             </div>
                         </form>
                     </div>
-
                     <div className="modal-action">
-                        <form method="dialog">
-                            <button className="btn">Close</button>
-                        </form>
+                        <label htmlFor="my_modal_6" className="btn">Close!</label>
                     </div>
                 </div>
-            </dialog>
+            </div>
+
         </div>
     );
 };
