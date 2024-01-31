@@ -3,7 +3,9 @@ import ProfilePage from "@/Components/SharedComponents/dashboard/ProfilePage"
 
 const dashboardmain = () => {
   return (
-      <ProfilePage />
+    <div className=''>
+     <ProfilePage></ProfilePage>
+    </div>
   )
 }
 
