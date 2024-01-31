@@ -39,12 +39,8 @@ const Navber = () => {
           <Link className="hover:scale-105 active:scale-95" href="/contact">
             contact
           </Link>
-<<<<<<< HEAD
           {
             user ? <Link className='hover:scale-105 active:scale-95' href='/dashboard'>
-=======
-          <Link className="hover:scale-105 active:scale-95" href="/dashboard">
->>>>>>> 570cc3620635eabf829aceee4348eb4367cb5804
             dashboard
           </Link> : ""
           }

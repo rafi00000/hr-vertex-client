@@ -1,13 +1,15 @@
 "use client";
+
 import { coreContext } from "@/provider/AuthContext";
 import { useContext, useState } from "react";
+
 
 
 const modal = () => {
 
     const { user } = useContext(coreContext)
 
-
+    console.log(user)
     const [formData, setFormData] = useState({
         fullName: '',
         emailAddress: '',
@@ -36,7 +38,7 @@ const modal = () => {
                                 <label className="text-md font-semibold">Full Name</label>
                                 <input
                                     type="text"
-                                    defaultValue={ user?.email}
+                                    defaultValue={user?.displayName}
                                     className="input input-bordered"
                                     name="fullName"
                                     value={formData.fullName}
@@ -47,7 +49,7 @@ const modal = () => {
                                 <label className="text-md font-semibold">Email Address</label>
                                 <input
                                     type="email"
-
+                                    defaultValue={user?.email}
                                     className="input input-bordered"
                                     name="emailAddress"
                                     value={formData.emailAddress}
