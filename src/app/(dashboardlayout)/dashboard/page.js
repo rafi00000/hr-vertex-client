@@ -1,4 +1,5 @@
-import ProfilePage from '@/Components/SharedComponents/ProfilePage'
+import ProfilePage from "@/Components/SharedComponents/dashboard/ProfilePage"
+
 
 const dashboardmain = () => {
   return (

@@ -53,7 +53,7 @@ const Menuber = () => {
         </li>
         <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
           <ImProfile className="text-xl" />
-          <Link className="p-3 w-full" href={`/dashboard/employees`}>
+          <Link className="p-3 w-full" href={`/dashboard/employee`}>
             employees
           </Link>
         </li>
