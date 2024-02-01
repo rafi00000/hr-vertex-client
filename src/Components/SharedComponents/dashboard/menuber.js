@@ -80,9 +80,9 @@ const Menuber = () => {
           {
             !IsOpen ? <FaPlus className="text-xl" /> : <GrSubtractCircle className="text-xl" />
           }
-          <Link onClick={() => setIsOpen((prev) => !prev)} className="p-3 w-full" href={`/dashboard`}>
+          <p onClick={() => setIsOpen((prev) => !prev)} className="p-3 w-full" >
             Skills & Training
-          </Link>
+          </p>
         </li>
 
         {
@@ -90,7 +90,7 @@ const Menuber = () => {
           <ul>
             <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
               <MdCreateNewFolder className="text-xl" />
-              <Link className="p-3 w-full" href={`/dashboard`}>
+              <Link className="p-3 w-full" href={`/dashboard/create`}>
                 Create Program
               </Link>
             </li>
@@ -100,7 +100,6 @@ const Menuber = () => {
                 Create Program
               </Link>
             </li>
-
           </ul>
         }
 
