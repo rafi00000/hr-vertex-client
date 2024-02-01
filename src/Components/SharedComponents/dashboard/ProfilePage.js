@@ -6,7 +6,7 @@ const ProfilePage = () => {
     const {user}  = useContext(coreContext);
     return (
         <div>
-            <p>Welcome Back {user?.displayName}</p>
+            
         </div>
     )
 };

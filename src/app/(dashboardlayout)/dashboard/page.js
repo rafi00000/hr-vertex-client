@@ -27,13 +27,5 @@ const useDashboardmain = async () => {
   console.error("Error fetching user data:", error);
   return <div className='text-center text-4xl font-bold py-20'>Error loading profile data</div>;
   }
-
-const dashboardmain = () => {
-  return (
-    <div className=''>
-        <ProfilePage />
-    </div>
-  )
 }
-
-export default useDashboardmain
+export default useDashboardmain;
