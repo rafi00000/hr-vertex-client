@@ -10,9 +10,13 @@ import { ImProfile } from "react-icons/im";
 import { IoIosHome } from "react-icons/io";
 import { coreContext } from "@/provider/AuthContext";
 import { RiFileCopy2Fill } from "react-icons/ri";
+import { FaPlus } from "react-icons/fa";
+import { GrSubtractCircle } from "react-icons/gr";
+import { MdCreateNewFolder } from "react-icons/md";
 const Menuber = () => {
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
+  const [IsOpen, setIsOpen] = useState(false);
   return (
     <div
       className={`pl-5 bg-emerald-200 md:min-h-screen p-3 shadow-2xl relative ${show ? "h-auto" : "h-[65px]"
@@ -52,7 +56,7 @@ const Menuber = () => {
         </li>
         <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
           <ImProfile className="text-xl" />
-          <Link className="p-3 w-full" href={`/dashboard/employees`}>
+          <Link className="p-3 w-full" href={`/dashboard/employee`}>
             employees
           </Link>
         </li>
@@ -70,21 +74,35 @@ const Menuber = () => {
         </li>
 
 
+
+
         <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
-         
-          <details className="">
-                   <summary className=" p-3 w-full"> Skills & Training</summary>
-            <ul className="p-2 menu text-black  dropdown-content duration-100  z-[1] ">
-              <li className="hover:bg-emerald-500 hover:text-white px-3 rounded-md ">
-                <a>Item 1</a>
-              </li>
-              <li className="hover:bg-emerald-500 hover:text-white px-3 rounded-md ">
-                <a>Item 2</a>
-              </li>
-            </ul>
-          </details>
+          {
+            !IsOpen ? <FaPlus className="text-xl" /> : <GrSubtractCircle className="text-xl" />
+          }
+          <Link onClick={() => setIsOpen((prev) => !prev)} className="p-3 w-full" href={`/dashboard`}>
+            Skills & Training
+          </Link>
         </li>
 
+        {
+          IsOpen &&
+          <ul>
+            <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+              <MdCreateNewFolder className="text-xl" />
+              <Link className="p-3 w-full" href={`/dashboard`}>
+                Create Program
+              </Link>
+            </li>
+            <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+              <RiFileCopy2Fill className="text-xl" />
+              <Link className="p-3 w-full" href={`/dashboard`}>
+                Create Program
+              </Link>
+            </li>
+
+          </ul>
+        }
 
       </ul>
       <div className="flex justify-start items-center  gap-4 border-t border-black pt-3 mt-6">
