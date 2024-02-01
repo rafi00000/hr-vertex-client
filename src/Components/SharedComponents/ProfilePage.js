@@ -3,7 +3,8 @@
 import { coreContext } from "@/provider/AuthContext";
 import { useContext, useState } from "react";
 import { FaPen } from "react-icons/fa6";
-import Button from "../ClintSideComponents/Button";
+import { FaXmark } from "react-icons/fa6";
+
 
 
 const ProfilePage = () => {
@@ -19,7 +20,10 @@ const ProfilePage = () => {
             <p className="font-semibold pl-3">Profile Page</p>
             <div className="w-1/2 mx-auto">
                 <img src={user?.photoURL} alt="" className="w-1/4 mx-auto rounded-full" />
-                <p className="text-right"><button className="btn btn-square bg-emerald-400 hover:bg-emerald-500 text-white" onClick={handleToggle}><FaPen /></button></p>
+                {
+                    edit ? <p className="text-right"><button className="btn btn-square bg-emerald-400 hover:bg-emerald-500 text-white" onClick={handleToggle}><FaPen /></button></p> :
+            <p className="text-right"><button className="btn btn-square bg-red-400 hover:bg-red-500 text-2xl text-white" onClick={handleToggle}><FaXmark /></button></p>
+            }
             </div>
             <form className=' border p-3 my-4 space-y-3'>
                 <div className="form-control">

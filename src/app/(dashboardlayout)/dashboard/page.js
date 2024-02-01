@@ -28,6 +28,12 @@ const useDashboardmain = async () => {
   return <div className='text-center text-4xl font-bold py-20'>Error loading profile data</div>;
   }
 
+const dashboardmain = () => {
+  return (
+    <div className=''>
+        <ProfilePage />
+    </div>
+  )
 }
 
 export default useDashboardmain
