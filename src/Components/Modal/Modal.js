@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 
 
 
-const modal = () => {
+const ApplicationModal = () => {
 
     const { user } = useContext(coreContext)
 
@@ -22,7 +22,7 @@ const modal = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        
     };
 
 
@@ -116,4 +116,4 @@ const modal = () => {
     );
 };
 
-export default modal;
+export default ApplicationModal;
