@@ -1,5 +1,5 @@
 'use client'
-import ProfilePage from "@/Components/SharedComponents/dashboard/ProfilePage"
+import ProfilePage from "../../../Components/SharedComponents/dashboard/ProfilePage"
 import useAxiosSecure from '@/axiosConfig/useAxiosSecure';
 import { coreContext } from '@/provider/AuthContext';
 import { useRouter } from 'next/navigation';
@@ -7,8 +7,9 @@ import { useContext } from 'react';
 
 const useDashboardmain = async () => {
   const axiosSecure = useAxiosSecure();
-  const router = useRouter()
-  const { user } = useContext(coreContext)
+  const router = useRouter();
+  const { user, loading } = useContext(coreContext);
+
   try {
     const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 100 } } });
     // console.log(response.data)
@@ -19,7 +20,10 @@ const useDashboardmain = async () => {
         </div>
       )
     } else {
-      router.push('/')
+      if(loading){
+        return <p className="text-center font-semibold text-xl">Loading</p>
+      }
+      router.push('/login')
     }
 
   } catch (error) {
