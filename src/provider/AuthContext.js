@@ -6,11 +6,11 @@ import { auth } from "../firebaseConfig/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
 
 
-export const coreContext = createContext({});
+export const coreContext = createContext(null);
 
 const AuthContext = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const googleProvider = new GoogleAuthProvider();
 
     const createUserEmail = (email, password) => {
@@ -36,11 +36,12 @@ const AuthContext = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             if (currentUser) {
+                setLoading(false);
                 setUser(currentUser);
-            } else {
-                setUser({});
             }
-            setLoading(false);
+            else{
+                setUser(null);
+            }
             console.log(currentUser);
         });
         return () => {
@@ -52,7 +53,8 @@ const AuthContext = ({ children }) => {
         createUserEmail,
         logOut,
         googleLogIn,
-        logIn, user
+        logIn, user,
+        loading
     };
 
     return (

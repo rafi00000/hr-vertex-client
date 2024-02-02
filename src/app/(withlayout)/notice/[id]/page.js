@@ -1,5 +1,5 @@
-import Button from '@/Components/ClintSideComponents/Button'
 import useAxiosRequest from '@/axiosConfig/useAxiosRequest'
+import Modal from '@/Components/Modal/Modal'
 import React from 'react'
 
 const usePage = async ({ params }) => {
@@ -7,7 +7,7 @@ const usePage = async ({ params }) => {
     try {
         const res = await axiosrequest.get(`/recruitment/${params.id}`)
         const data = res.data
-        console.log(res.data)
+        // console.log(res.data)
         return (
             <div className='min-h-screen container mx-auto py-16'>
                 <h3 className='text-xl font-bold'>{data?.position}</h3>
@@ -20,9 +20,9 @@ const usePage = async ({ params }) => {
                 <p className='font-semibold pt-2'>deadline :</p>
                 <p className='pb-3 font-extrabold'>{data?.applicationDeadline?.split('T')[0]}
                 </p>
-              <span className='flex justify-end items-center'>
-              <Button text='apply now' />
-              </span>
+                <span className='flex justify-end items-center'>
+                    <Modal></Modal>
+                </span>
             </div>
         )
     } catch (error) {
