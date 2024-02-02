@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 import { RiUserSearchFill } from 'react-icons/ri';
-import { MdHolidayVillage } from 'react-icons/md';
 import { TiThMenuOutline } from 'react-icons/ti';
 import { CgProfile } from 'react-icons/cg';
 import { ImProfile } from 'react-icons/im';
