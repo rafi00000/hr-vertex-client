@@ -3,8 +3,13 @@ import { HiUserGroup } from "react-icons/hi";
 const AboutPage = () => {
   return (
     <>
-      <div className="bg-[url('https://i.ibb.co/N1VHksh/Black-And-Red-Modern-Business-Human-Resource-Management-Presentation.png')] bg-opacity-10 ">
-        <div className="mx-auto md:py-36 py-44 container md:grid grid-cols-2 gap-4 items-center justify-between">
+      <div  className="">
+
+        <div className=" bg-[url('https://i.ibb.co/N1VHksh/Black-And-Red-Modern-Business-Human-Resource-Management-Presentation.png')] md:py-36 py-48">
+          <p className="md:text-5xl text-3xl font-bold text-center block uppercase text-white">About us</p>
+        </div>
+
+        <div className="ml-14 mx-auto md:py-24 py-44 container md:grid grid-cols-2 gap-4 items-center justify-between">
           <div>
             <div className="flex gap-2 items-center text-emerald-500">
               <HiUserGroup size={28}></HiUserGroup>

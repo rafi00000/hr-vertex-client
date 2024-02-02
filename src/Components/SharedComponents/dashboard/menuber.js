@@ -4,18 +4,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 import { RiUserSearchFill } from 'react-icons/ri';
-import { MdHolidayVillage } from 'react-icons/md';
 import { TiThMenuOutline } from 'react-icons/ti';
 import { CgProfile } from 'react-icons/cg';
 import { ImProfile } from 'react-icons/im';
 import { IoIosHome } from 'react-icons/io';
 import { coreContext } from '@/provider/AuthContext';
 import { RiFileCopy2Fill } from 'react-icons/ri';
+import { FaPlus } from 'react-icons/fa';
+import { GrSubtractCircle } from 'react-icons/gr';
+import { MdCreateNewFolder } from 'react-icons/md';
 const Menuber = () => {
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
-  const [isAdmin, setIsAdmin] = useState();
-
+  const [isAdmin, setIsAdmin] = useState({});
+  const [IsOpen, setIsOpen] = useState(false);
+  
   useEffect(() =>{
     fetch(`https://hr-vertex-server.vercel.app/users/${user?.email}`)
     .then(res => res.json())
@@ -73,6 +76,32 @@ const Menuber = () => {
             applications
           </Link>
         </li>
+        <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+          {
+            !IsOpen ? <FaPlus className="text-xl" /> : <GrSubtractCircle className="text-xl" />
+          }
+          <p onClick={() => setIsOpen((prev) => !prev)} className="p-3 w-full" >
+            Skills & Training
+          </p>
+        </li>
+
+        {
+          IsOpen &&
+          <ul>
+            <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+              <MdCreateNewFolder className="text-xl" />
+              <Link className="p-3 w-full" href={`/dashboard/create`}>
+                Create Program
+              </Link>
+            </li>
+            <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+              <RiFileCopy2Fill className="text-xl" />
+              <Link className="p-3 w-full" href={`/dashboard`}>
+                Create Program
+              </Link>
+            </li>
+          </ul>
+        }
       </ul>
       <div className='flex justify-start items-center  gap-4 border-t border-black pt-3 mt-6'>
         <li className='flex justify-start items-center w-full gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
