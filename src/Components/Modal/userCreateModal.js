@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 
 
 
-const modal = () => {
+const UserCreateModel = () => {
 
     const { user } = useContext(coreContext)
 
@@ -41,6 +41,7 @@ const modal = () => {
                                     defaultValue={user?.displayName}
                                     className="input input-bordered"
                                     name="fullName"
+                                    value={formData.fullName}
                                     required
                                 />
                             </div>
@@ -51,6 +52,7 @@ const modal = () => {
                                     defaultValue={user?.email}
                                     className="input input-bordered"
                                     name="emailAddress"
+                                    value={formData.emailAddress}
                                     required
                                 />
                             </div>
@@ -61,6 +63,7 @@ const modal = () => {
                                     placeholder="Enter your phone number"
                                     className="input input-bordered"
                                     name="phoneNumber"
+                                    value={formData.phoneNumber}
                                     required
                                 />
                             </div>
@@ -70,6 +73,7 @@ const modal = () => {
                                     placeholder="Enter your address"
                                     className="input input-bordered"
                                     name="address"
+                                    value={formData.address}
                                     required
                                 />
                             </div>
@@ -80,6 +84,7 @@ const modal = () => {
                                     placeholder="Enter your education background"
                                     className="input input-bordered"
                                     name="education"
+                                    value={formData.education}
                                     required
                                 />
                             </div>
@@ -89,6 +94,7 @@ const modal = () => {
                                     placeholder="Enter your work experience"
                                     className="input input-bordered"
                                     name="workExperience"
+                                    value={formData.workExperience}
                                     required
                                 />
                             </div>
@@ -99,6 +105,7 @@ const modal = () => {
                                     placeholder="Enter your link"
                                     className="input input-bordered"
                                     name="cv"
+                                    value={formData.cv}
                                     required
                                 />
                             </div>
@@ -116,4 +123,4 @@ const modal = () => {
     );
 };
 
-export default modal;
+export default UserCreateModel;
