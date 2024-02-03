@@ -1,5 +1,5 @@
 import useAxiosRequest from '@/axiosConfig/useAxiosRequest'
-import Modal from "@/Components/Modal/Modal"
+import Modal from "@/Components/Modal/useModal"
 import React from 'react'
 
 const usePage = async ({ params }) => {

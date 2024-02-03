@@ -1,15 +1,15 @@
 "use client";
 
 import { coreContext } from "@/provider/AuthContext";
-import { useContext, useState } from "react";
-import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
+import { useContext } from "react";
 
 
-const modal = () => {
+
+const useModal = () => {
 
     const { user } = useContext(coreContext)
-    // console.log(user)
-    const axiosSecure = useAxiosSecure();
+    console.log(user)
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,7 +27,7 @@ const modal = () => {
         }
         console.log(data);
 
-       
+
     }
 
     return (
@@ -121,4 +121,4 @@ const modal = () => {
     );
 };
 
-export default modal;
+export default useModal; 
