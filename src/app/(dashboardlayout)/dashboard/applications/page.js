@@ -11,7 +11,7 @@ const usePage = async () => {
     const [show, setshow] = useState(false)
     //
     try {
-        const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 100 } } });
+        const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 10 } } });
         console.log(response.data)
         if (response?.data?.data?.role === 'admin') {
             const HandelSubmit = async (e) => {
@@ -33,9 +33,8 @@ const usePage = async () => {
             const appicationdata = res.data
             return (
                 <div className="p-5 container  mx-auto my-4  rounded-lg h-screen overflow-y-scroll">
-                    <h3 className="text-center pt-10 uppercase text-3xl font-bold">all applications  </h3>
                     <div className="overflow-x-auto" >
-                        <h3 className='uppercase text-3xl font-bold pt-10 pb-3 text-center'>all employees</h3>
+                    <h3 className="text-center pt-10 uppercase text-3xl font-bold">all applications  </h3>
                         <table className="table">
                             {/* head */}
                             <thead>

@@ -2,7 +2,7 @@
 import useAxiosRequest from '@/axiosConfig/useAxiosRequest';
 import React from 'react';
 
-const createPage = () => {
+const CreatePage = () => {
     const axiosrequest = useAxiosRequest();
     const imageapikey = process.env.VITE_IMAGE_API_KEY;
     const image_hosting_api = `https://api.imgbb.com/1/upload?key=5201d474546c521dc75dd9c96eea7a84`;
@@ -116,4 +116,4 @@ const createPage = () => {
     );
 };
 
-export default createPage;
+export default CreatePage;
