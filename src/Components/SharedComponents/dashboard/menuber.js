@@ -11,27 +11,28 @@ import { IoIosHome } from 'react-icons/io';
 import { coreContext } from '@/provider/AuthContext';
 import { RiFileCopy2Fill } from 'react-icons/ri';
 import { FaPlus } from 'react-icons/fa';
-import { GrSubtractCircle } from 'react-icons/gr';
+import { GrFormSubtract } from "react-icons/gr";
 import { MdCreateNewFolder } from 'react-icons/md';
+import { MdOutlinePeopleAlt } from "react-icons/md";
 const Menuber = () => {
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
   const [isAdmin, setIsAdmin] = useState({});
   const [IsOpen, setIsOpen] = useState(false);
-  
-  useEffect(() =>{
+  const [IsOpen1, setIsOpen1] = useState(false);
+
+  useEffect(() => {
     fetch(`https://hr-vertex-server.vercel.app/users/${user?.email}`)
-    .then(res => res.json())
-    .then(data =>{
-      setIsAdmin(data); 
-    })
+      .then(res => res.json())
+      .then(data => {
+        setIsAdmin(data);
+      })
   }, [user?.email])
 
   return (
     <div
-      className={`pl-5 bg-emerald-200 md:min-h-screen p-3 shadow-2xl relative ${
-        show ? 'h-auto' : 'h-[65px]'} overflow-hidden`}
-        >
+      className={`pl-5 bg-emerald-200 md:min-h-screen p-3 shadow-2xl relative ${show ? 'h-auto' : 'h-[65px]'} overflow-hidden`}
+    >
       <div className='flex justify-start items-center  gap-4 border-b border-black pb-3'>
         <Image
           className='w-10 h-10 object-cover rounded-full'
@@ -76,7 +77,8 @@ const Menuber = () => {
             applications
           </Link>
         </li>
-        <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+
+        {/* <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
           {
             !IsOpen ? <FaPlus className="text-xl" /> : <GrSubtractCircle className="text-xl" />
           }
@@ -101,7 +103,45 @@ const Menuber = () => {
               </Link>
             </li>
           </ul>
+        } */}
+
+        {/* second employed menubar */}
+
+        <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+
+          <MdOutlinePeopleAlt size={25} className="text-xl" />
+          <p onClick={() => setIsOpen1((pre) => !pre)} className="p-3 pl-3 w-full" >
+            employees
+          </p>
+          {
+            !IsOpen1 ? <span><FaPlus size={11} className="text-xl" /></span> : <span><GrFormSubtract size={20} className="text-xl" /></span>
+          }
+        </li>
+
+        {
+          IsOpen1 &&
+          <ul>
+            <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+              <p className="p-3 text-sm pl-10 w-full" >
+                ALL Employees
+              </p>
+            </li>
+            <Link href={`/dashboard/addEmployee`}>
+              <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+                <p className="p-3 text-sm pl-10 w-full" >
+                  Add Employees
+                </p>
+              </li>
+            </Link>
+            <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+              <p className="p-3 text-sm pl-10 w-full" >
+                Edit Employees
+              </p>
+            </li>
+          </ul>
         }
+
+
       </ul>
       <div className='flex justify-start items-center  gap-4 border-t border-black pt-3 mt-6'>
         <li className='flex justify-start items-center w-full gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>

@@ -34,7 +34,7 @@ const useModal = () => {
             experience,
             resume
         }
-        console.log(info);
+        // console.log(info);
 
 
         try {
