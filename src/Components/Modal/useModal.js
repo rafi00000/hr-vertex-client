@@ -1,34 +1,61 @@
 "use client";
 
+
+import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
 import { coreContext } from "@/provider/AuthContext";
 import { useContext } from "react";
-
+import Swal from 'sweetalert2';
 
 
 const useModal = () => {
 
     const { user } = useContext(coreContext)
-    console.log(user)
+    const axios = useAxiosSecure();
+    // console.log(user)
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
-        const fullName = form.fullName.value;
-        const emailAddress = form.emailAddress.value;
-        const phoneNumber = form.phoneNumber.value;
+        const name = form.name.value;
+        const email = form.email.value;
+        const phone = form.phone.value;
         const address = form.address.value;
         const education = form.education.value;
-        const workExperience = form.workExperience.value;
-        const cv = form.cv.value;
+        const experience = form.experience.value;
+        const resume = form.resume.value;
 
-        const data = {
-            fullName, address, phoneNumber, emailAddress, education, workExperience, cv
+        const info = {
+            name,
+            email,
+            phone,
+            address,
+            education,
+            experience,
+            resume
         }
-        console.log(data);
+        console.log(info);
+
+
+        try {
+            const res = await axios.post('/applications', info)
+            if (res.data?.success) {
+                e.target.reset()
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "applications posted ",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } catch (error) {
+            console.log(error)
+        }
 
 
     }
+
 
     return (
         <div>
@@ -44,7 +71,7 @@ const useModal = () => {
                                     type="text"
                                     defaultValue={user?.displayName}
                                     className="input input-bordered"
-                                    name="fullName"
+                                    name="name"
                                     required
                                 />
                             </div>
@@ -54,23 +81,24 @@ const useModal = () => {
                                     type="email"
                                     defaultValue={user?.email}
                                     className="input input-bordered"
-                                    name="emailAddress"
+                                    name="email"
                                     required
                                 />
                             </div>
                             <div className="form-control w-full">
                                 <label className="text-md font-semibold">Phone Number</label>
                                 <input
-                                    type="tel"
+                                    type="number"
                                     placeholder="Enter your phone number"
                                     className="input input-bordered"
-                                    name="phoneNumber"
+                                    name="phone"
                                     required
                                 />
                             </div>
                             <div className="form-control w-full">
                                 <label className="text-md font-semibold">Address</label>
                                 <input
+                                    type="text"
                                     placeholder="Enter your address"
                                     className="input input-bordered"
                                     name="address"
@@ -90,19 +118,21 @@ const useModal = () => {
                             <div className="form-control w-full">
                                 <label className="text-md font-semibold">Work Experience</label>
                                 <input
+                                    type="number"
                                     placeholder="Enter your work experience"
                                     className="input input-bordered"
-                                    name="workExperience"
+                                    name="experience"
                                     required
                                 />
                             </div>
 
                             <div className="form-control w-full">
-                                <label className="text-md font-semibold">CV Link</label>
+                                <label className="text-md font-semibold">resume Link</label>
                                 <input
+                                    type="text"
                                     placeholder="Enter your link"
                                     className="input input-bordered"
-                                    name="cv"
+                                    name="resume"
                                     required
                                 />
                             </div>
@@ -116,9 +146,12 @@ const useModal = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
+
+
+
+
 };
 
 export default useModal; 
