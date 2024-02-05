@@ -121,11 +121,13 @@ const Menuber = () => {
         {
           IsOpen1 &&
           <ul>
-            <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
-              <p className="p-3 text-sm pl-10 w-full" >
-                ALL Employees
-              </p>
-            </li>
+            <Link href={`/dashboard/allEmployee`}>
+              <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+                <p className="p-3 text-sm pl-10 w-full" >
+                  ALL Employees
+                </p>
+              </li>
+            </Link>
             <Link href={`/dashboard/addEmployee`}>
               <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
                 <p className="p-3 text-sm pl-10 w-full" >
@@ -133,11 +135,13 @@ const Menuber = () => {
                 </p>
               </li>
             </Link>
-            <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
-              <p className="p-3 text-sm pl-10 w-full" >
-                Edit Employees
-              </p>
-            </li>
+            <Link href={`/dashboard/editEmployee`}>
+              <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+                <p className="p-3 text-sm pl-10 w-full" >
+                  Edit Employees
+                </p>
+              </li>
+            </Link>
           </ul>
         }
 
