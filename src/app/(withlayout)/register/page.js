@@ -25,13 +25,37 @@ const RegisterPage = () => {
     const photo = form.photo.files[0];
     console.log(name, password, email, photo);
     if (password.length < 8) {
-      alert("password less than 8 characters");
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        footer: 'password less than 8 characters'
+
+      });
+
     } else if (!/[A-Z]/.test(password)) {
-      alert("password should have a one uppercase characters");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        footer: 'password should have a one uppercase characters'
+      });
+
     } else if (!/[a-z]/.test(password)) {
-      alert("password should have a one lowercase characters");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        footer: 'password should have a one lowercase characters'
+
+      });
+
     } else if (!/[@,$,#,%,&]/.test(password)) {
-      alert("password should have a one spaical characters");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        footer: 'password should have a one spaical characters'
+
+      });
+
     }
     console.log(image_hosting_api);
     const res = await axiosrequest.post(

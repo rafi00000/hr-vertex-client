@@ -39,9 +39,12 @@ const Navber = () => {
           <Link className="hover:scale-105 active:scale-95" href="/contact">
             contact
           </Link>
-          <Link className="hover:scale-105 active:scale-95" href="/dashboard">
+          {
+           user && <Link className="hover:scale-105 active:scale-95" href="/dashboard">
             dashboard
           </Link>
+          }
+          
         </div>
         <div className="flex justify-end items-center gap-2">
           {user?.displayName ? (

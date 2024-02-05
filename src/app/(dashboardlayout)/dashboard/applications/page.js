@@ -1,17 +1,20 @@
 'use client'
-import Button from '@/Components/ClintSideComponents/Button';
+
 import useAxiosSecure from '@/axiosConfig/useAxiosSecure';
 import { coreContext } from '@/provider/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
+import Swal from 'sweetalert2';
 const usePage = async () => {
     const axiosSecure = useAxiosSecure();
     const router = useRouter()
     const { user } = useContext(coreContext)
     const [show, setshow] = useState(false)
+    //const [applicationdata, setAppicationData] = useState([]);
     //
+   
     try {
-        const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 100 } } });
+        const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 10 } } });
         console.log(response.data)
         if (response?.data?.data?.role === 'admin') {
             const HandelSubmit = async (e) => {
@@ -30,9 +33,50 @@ const usePage = async () => {
                 // console.log(res.data);
             }
             const res = await axiosSecure.get('/users', { params: { next: { revalidate: 100 } } });
-            const appicationdata = res.data
+            const applicationdata = res.data;
+
+            
+  const handleDelete = async (email) => {
+    // Display a confirmation dialog using SweetAlert2
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await axiosSecure.delete(`/users/${email}`);
+        console.log('Application deleted successfully:', res.data);
+        // Update the local state to remove the deleted user
+        //setAppicationData(prevData => prevData.filter(item => item?._id !== email));
+        
+        // Display a success message using SweetAlert2
+        Swal.fire(
+          'Deleted!',
+          'The application has been deleted.',
+          'success'
+        );
+      } catch (error) {
+        console.error('Error deleting application:', error);
+        // Display an error message using SweetAlert2
+        Swal.fire(
+          'Error!',
+          'Failed to delete the application.',
+          'error'
+        );
+        // Handle error appropriately
+      }
+    }
+  };
+
             return (
                 <div className="p-5 container  mx-auto my-4  rounded-lg h-screen overflow-y-scroll">
+                    <div className="overflow-x-auto" >
                     <h3 className="text-center pt-10 uppercase text-3xl font-bold">all applications  </h3>
                     <div className="overflow-x-auto" >
                         <table className="table">
@@ -47,12 +91,13 @@ const usePage = async () => {
                             </thead>
                             <tbody>
                                 {
-                                    appicationdata.map(item => <tr key={item?._id} className="bg-base-200">
+                                    applicationdata.map(item => <tr key={item?._id} className="bg-base-200">
                                         <td>{item?.name}</td>
                                         <td>{item?.email}</td>
                                         <td>{item?.job}</td>
                                         <td>
-                                            <Button text='delete' />
+                                            <button className='bg-emerald-400 text-gray-700 cursor-pointer hover:scale-105 active:scale-95 transition-all px-8 py-2'  onClick={() => handleDelete(item?._id)} >
+                                            Delete</button>
                                         </td>
         
                                     </tr>)

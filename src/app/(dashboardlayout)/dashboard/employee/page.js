@@ -18,6 +18,7 @@ const usePage = async () => {
             return (
                 <div className="overflow-x-auto h-screen overflow-y-auto" >
                     <h3 className='uppercase text-3xl font-bold pt-10 pb-3 text-center'>all employees</h3>
+                    <p className='text-right'><button className='btn bg-emerald-400 hover:bg-emerald-400 hover:text-white'> + Create an Employee</button></p>
                     <table className="table">
                         {/* head */}
                         <thead>
