@@ -35,7 +35,6 @@ const usePage = async () => {
                 <div className="p-5 container  mx-auto my-4  rounded-lg h-screen overflow-y-scroll">
                     <h3 className="text-center pt-10 uppercase text-3xl font-bold">all applications  </h3>
                     <div className="overflow-x-auto" >
-                        <h3 className='uppercase text-3xl font-bold pt-10 pb-3 text-center'>all employees</h3>
                         <table className="table">
                             {/* head */}
                             <thead>

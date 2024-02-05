@@ -13,8 +13,8 @@ const useReqruitment = async () => {
     try {
         const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 100 } } });
         // console.log(response.data)
-        //?.data?.role === 'admin'
-        if (response?.data) {
+        //
+        if (response?.data?.data?.role === 'admin') {
             const HandelSubmit = async (e) => {
                 e.preventDefault()
                 const form = e.target;

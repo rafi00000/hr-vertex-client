@@ -10,12 +10,16 @@ import { ImProfile } from "react-icons/im";
 import { IoIosHome } from "react-icons/io";
 import { coreContext } from "@/provider/AuthContext";
 import { RiFileCopy2Fill } from "react-icons/ri";
+import { TbBellStar } from "react-icons/tb";
+import { usePathname } from "next/navigation";
 const Menuber = () => {
+  const pathname = usePathname()
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
+  // console.log(pathname)
   return (
     <div
-      className={`pl-5 bg-emerald-200 md:min-h-screen p-3 shadow-2xl relative ${
+      className={`${pathname ==='/dashboard'?'hidden':'block'} pl-5 bg-emerald-200 md:min-h-screen p-3 shadow-2xl relative ${
         show ? "h-auto" : "h-[65px]"
       } overflow-hidden`}
     >
@@ -38,7 +42,7 @@ const Menuber = () => {
         onClick={() => setshow(!show)}
         className="absolute transition-all md:hidden block top-6 right-4 text-2xl font-bold"
       />
-      <ul className="pt-3 uppercase font-semibold flex flex-col gap-2 ">
+      <ul className="pt-3 uppercase font-semibold flex flex-col gap-1 ">
         <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
           <CgProfile className="text-xl" />
           <Link className="p-3 w-full" href={`/dashboard`}>
@@ -61,6 +65,12 @@ const Menuber = () => {
           <RiUserSearchFill className="text-xl" />
           <Link className="p-3 w-full" href={`/dashboard/recruitment`}>
             recruitment
+          </Link>
+        </li>
+        <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+          <TbBellStar className="text-xl" />
+          <Link className="p-3 w-full" href={`/dashboard/allnotice`}>
+            all notice
           </Link>
         </li>
         <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">

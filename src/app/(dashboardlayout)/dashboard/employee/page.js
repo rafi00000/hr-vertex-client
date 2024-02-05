@@ -16,7 +16,7 @@ const usePage = async () => {
             const res = await axiosSecure.get('/users', { params: { next: { revalidate: 100 } } });
             const userData = res.data
             return (
-                <div className="overflow-x-auto" >
+                <div className="overflow-x-auto h-screen overflow-y-auto" >
                     <h3 className='uppercase text-3xl font-bold pt-10 pb-3 text-center'>all employees</h3>
                     <table className="table">
                         {/* head */}
