@@ -13,7 +13,9 @@ import { RiFileCopy2Fill } from 'react-icons/ri';
 import { FaPlus } from 'react-icons/fa';
 import { GrSubtractCircle } from 'react-icons/gr';
 import { MdCreateNewFolder } from 'react-icons/md';
+import { usePathname } from 'next/navigation';
 const Menuber = () => {
+  const pathname = usePathname()
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
   const [isAdmin, setIsAdmin] = useState({});
@@ -55,25 +57,31 @@ const Menuber = () => {
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <CgProfile className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard`}>
-            profile
+            Profile
           </Link>
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <ImProfile className='text-xl' />
-          <Link className='p-3 w-full' href={`/dashboard/employee`}>
-            employees
+          <Link className='p-3 w-full' href={`/dashboard/employees`}>
+            Employees
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <ImProfile className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/attendance`}>
+            Attendance
           </Link>
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <RiUserSearchFill className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/recruitment`}>
-            recruitment
+            Recruitment
           </Link>
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <RiFileCopy2Fill className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/applications`}>
-            applications
+            Applications
           </Link>
         </li>
         <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">

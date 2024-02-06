@@ -10,7 +10,7 @@ const Button = ({
   padding,
   margin,
   handeler,
-  customid,
+  peramiter,
 }) => {
   return (
     <button
@@ -18,7 +18,7 @@ const Button = ({
         if (!handeler) {
           return console.log("no event handeler added in this button");
         }
-        handeler(customid ? customid : "");
+        handeler(peramiter ? peramiter : "");
       }}
       className={`${background || "bg-emerald-400"} ${
         textcolor || "text-gray-700 "
@@ -28,7 +28,7 @@ const Button = ({
         padding ? padding : "py-2"
       } uppercase rounded-sm ${textwidth ? textwidth : "font-normal"}`}
     >
-      {text ? text : "please send button text as props"}
+      {text ? text : "button"}
     </button>
   );
 };
