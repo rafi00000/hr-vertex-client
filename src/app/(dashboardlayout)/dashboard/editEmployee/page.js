@@ -1,69 +1,26 @@
 "use client";
 
-import useAxiosRequest from "@/axiosConfig/useAxiosRequest";
-import { useState } from "react";
 
-
-const page = () => {
-
-
-    const [Data, SetData] = useState("")
-    const [Gender, SetGender] = useState("")
-    const [Salary, SetSalary] = useState("")
-    const axiosrequest = useAxiosRequest();
-    // const axios = useAxiosSecure();
-    const imageapikey = process.env.VITE_IMAGE_API_KEY;
-    const image_hosting_api = `https://api.imgbb.com/1/upload?key=5201d474546c521dc75dd9c96eea7a84`;
+import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
 
 
 
-    const HandelSubmit = async (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const FullName = form.FullName.value;
-        const EmployeeId = form.EmployeeId.value;
-        const Email = form.Email.value;
-        const JoiningDate = form.JoiningDate.value;
-        const PhoneNumber = form.PhoneNumber.value;
-        const Address = form.Address.value;
-        const photo = form.photo.files[0];
+const usePage = async () => {
 
-        const res = await axiosrequest.post(
-            image_hosting_api,
-            { image: photo },
-            {
-                headers: {
-                    "content-type": "multipart/form-data",
-                },
-            }
-        );
+    const axiosSecure = useAxiosSecure();
 
-        const PhotoUrl = res.data.data.display_url
-        // console.log(PhotoUrl)
+    const response = await axiosSecure.get('http://localhost:5000/users',);
+    const Data = response.data
 
-        const info = {
-            FullName,
-            Email,
-            EmployeeId,
-            Gender: Gender,
-            Salary: Salary,
-            Address,
-            Designation: Data,
-            JoiningDate,
-            PhoneNumber,
-            photo: PhotoUrl,
-        }
-
-        console.log(info)
+    console.log(Data)
 
 
-    }
     return (
         <div>
             <div className='px-6 mt-2'>
                 <h1 className="pb-7 font-semibold text-lg">Edit Employee</h1>
                 <form
-                    onSubmit={HandelSubmit}
+
                     className="space-y-4 md:space-y-6  mt-1"
                     action="#"
                 >
@@ -211,4 +168,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default usePage;
