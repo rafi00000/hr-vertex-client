@@ -13,7 +13,9 @@ import { RiFileCopy2Fill } from 'react-icons/ri';
 import { FaPlus } from 'react-icons/fa';
 import { GrSubtractCircle } from 'react-icons/gr';
 import { MdCreateNewFolder } from 'react-icons/md';
+import { usePathname } from 'next/navigation';
 const Menuber = () => {
+  const pathname = usePathname()
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
   const [isAdmin, setIsAdmin] = useState({});

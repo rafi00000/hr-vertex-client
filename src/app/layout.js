@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'hr-vortex',
   description: 'hr management system',
+  icons: {
+    icon: '/hr-icon-8.jpg', // /public path
+  },
 }
 
 export default function RootLayout({ children }) {
@@ -15,9 +18,9 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="light">
       <body className={inter.className}>
         <div className='min-h-screen'>
-        <AuthContext>
-        {children}
-        </AuthContext>
+          <AuthContext>
+            {children}
+          </AuthContext>
         </div>
       </body>
     </html>
