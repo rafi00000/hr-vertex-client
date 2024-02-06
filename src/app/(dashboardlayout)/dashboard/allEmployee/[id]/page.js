@@ -1,15 +1,27 @@
-import React from 'react';
+"use client"
 
-const editEmployee = ({ params }) => {
+import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
 
 
-    console.log(params.id)
+
+
+const useEmployee = async ({ params }) => {
+    const id = params?.id
+    // console.log(id)
+
+    const axiosSecure = useAxiosSecure();
+
+
+    const response = await axiosSecure.get(`http://localhost:5000/users/${id}`);
+    const Data = response.data
+    // console.log(Data)
+
 
     return (
         <div>
-          ddd
+            {id}
         </div>
     );
 };
 
-export default editEmployee;
+export default useEmployee;
