@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { useContext, useState } from "react";
-import { RiUserSearchFill } from "react-icons/ri";
-import { MdHolidayVillage } from "react-icons/md";
-import { TiThMenuOutline } from "react-icons/ti";
-import { CgProfile } from "react-icons/cg";
-import { ImProfile } from "react-icons/im";
-import { IoIosHome } from "react-icons/io";
-import { coreContext } from "@/provider/AuthContext";
-import { RiFileCopy2Fill } from "react-icons/ri";
-import { TbBellStar } from "react-icons/tb";
-import { usePathname } from "next/navigation";
-=======
 'use client'
 
 import Image from 'next/image';
@@ -29,21 +13,11 @@ import { RiFileCopy2Fill } from 'react-icons/ri';
 import { FaPlus } from 'react-icons/fa';
 import { GrSubtractCircle } from 'react-icons/gr';
 import { MdCreateNewFolder } from 'react-icons/md';
->>>>>>> 0ee3e9296f26cb8911ae63f3683eaf37d3390c82
+import { usePathname } from 'next/navigation';
 const Menuber = () => {
   const pathname = usePathname()
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
-<<<<<<< HEAD
-  // console.log(pathname)
-  return (
-    <div
-      className={`${pathname ==='/dashboard'?'hidden':'block'} pl-5 bg-emerald-200 md:min-h-screen p-3 shadow-2xl relative ${
-        show ? "h-auto" : "h-[65px]"
-      } overflow-hidden`}
-    >
-      <div className="flex justify-start items-center  gap-4 border-b border-black pb-3">
-=======
   const [isAdmin, setIsAdmin] = useState({});
   const [IsOpen, setIsOpen] = useState(false);
   
@@ -61,7 +35,6 @@ const Menuber = () => {
         show ? 'h-auto' : 'h-[65px]'} overflow-hidden`}
         >
       <div className='flex justify-start items-center  gap-4 border-b border-black pb-3'>
->>>>>>> 0ee3e9296f26cb8911ae63f3683eaf37d3390c82
         <Image
           className='w-10 h-10 object-cover rounded-full'
           src={user?.photoURL}
@@ -80,17 +53,10 @@ const Menuber = () => {
         onClick={() => setshow(!show)}
         className='absolute transition-all md:hidden block top-6 right-4 text-2xl font-bold'
       />
-<<<<<<< HEAD
-      <ul className="pt-3 uppercase font-semibold flex flex-col gap-1 ">
-        <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
-          <CgProfile className="text-xl" />
-          <Link className="p-3 w-full" href={`/dashboard`}>
-=======
       <ul className='pt-3 uppercase font-semibold flex flex-col gap-2 '>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <CgProfile className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard`}>
->>>>>>> 0ee3e9296f26cb8911ae63f3683eaf37d3390c82
             profile
           </Link>
         </li>
@@ -106,21 +72,9 @@ const Menuber = () => {
             recruitment
           </Link>
         </li>
-<<<<<<< HEAD
-        <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
-          <TbBellStar className="text-xl" />
-          <Link className="p-3 w-full" href={`/dashboard/allnotice`}>
-            all notice
-          </Link>
-        </li>
-        <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
-          <RiFileCopy2Fill className="text-xl" />
-          <Link className="p-3 w-full" href={`/dashboard/applications`}>
-=======
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <RiFileCopy2Fill className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/applications`}>
->>>>>>> 0ee3e9296f26cb8911ae63f3683eaf37d3390c82
             applications
           </Link>
         </li>

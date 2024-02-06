@@ -6,20 +6,14 @@ import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 
 const useDashboardmain = async () => {
-  const axiosSecure = useAxiosSecure();
   const router = useRouter()
   const { user } = useContext(coreContext)
   try {
-    const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 100 } } });
-    if (response?.data?.data?.role === 'employee' || response?.data?.data?.role === 'admin') {
       return (
         <div className=''>
           <ProfilePage></ProfilePage>
         </div>
       )
-    } else {
-      router.push('/')
-    }
 
   } catch (error) {
     // Handle error appropriately

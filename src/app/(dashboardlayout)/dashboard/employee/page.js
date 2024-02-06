@@ -8,11 +8,7 @@ const usePage = async () => {
     const axiosSecure = useAxiosSecure();
     const router = useRouter()
     const { user } = useContext(coreContext)
-    //
     try {
-        const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 100 } } });
-        console.log(response.data)
-        if (response?.data?.data?.role === 'admin') {
             const res = await axiosSecure.get('/users', { params: { next: { revalidate: 100 } } });
             const userData = res.data
             return (
@@ -53,10 +49,6 @@ const usePage = async () => {
                 </div >
 
             );
-        } else {
-            router.push('/')
-        }
-
     } catch (error) {
         // Handle error appropriately
         console.error("Error fetching user data:", error);

@@ -2,6 +2,7 @@
 
 import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
 import { coreContext } from "@/provider/AuthContext"
+import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react"
 
@@ -9,7 +10,7 @@ const usePage = async () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useContext(coreContext)
     if (user) {
-        const res = await axiosSecure.get(`/holidays`, { params: { next: { revalidate: 100 } } });
+        const res = await axiosSecure.get(`/loan`, { params: { next: { revalidate: 100 } } });
         const data = res.data;
         return (
             <div >
@@ -19,18 +20,26 @@ const usePage = async () => {
                         {/* head */}
                         <thead>
                             <tr>
-                                <th>total</th>
-                                <th>holiday</th>
+                                <th>progile</th>
+                                <th>name</th>
+                                <th>email</th>
+                                <th>amount</th>
                                 <th>date</th>
+                                <th>reason</th>
                                 <th>actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 data.map(item => <tr key={item?._id}>
-                                    <td>{item?.total}</td>
-                                    <td>{item?.holiday}</td>
-                                    <td>{item?.holiday}</td>
+                                    <td>
+                                        <Image className="rounded-full" src={item?.user?.PhotoUrl} alt="profile" height={30} width={30} />
+                                    </td>
+                                    <td>{item?.user?.name}</td>
+                                    <td>{item?.user?.email}</td>
+                                    <td>{item?.amount}</td>
+                                    <td>{item?.applicationDeadline?.split('T')[0]}</td>
+                                    <td>{item?.reason}</td>
                                     <td>
                                         <button className="btn bg-emerald-400">delete</button>
                                     </td>

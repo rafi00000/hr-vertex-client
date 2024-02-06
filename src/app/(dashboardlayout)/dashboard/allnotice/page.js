@@ -10,8 +10,6 @@ const usePage = async () => {
     const router = useRouter()
     const { user } = useContext(coreContext)
     try {
-        const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 100 } } });
-        if (response?.data) {
             const deleteNotice=id=>{
                 console.log(id);
             }
@@ -53,10 +51,6 @@ const usePage = async () => {
                 </div>
 
             );
-        } else {
-            router.push('/')
-        }
-
     } catch (error) {
         // Handle error appropriately
         console.error("Error fetching user data:", error);
