@@ -12,9 +12,12 @@ import { coreContext } from '@/provider/AuthContext';
 import { RiFileCopy2Fill } from 'react-icons/ri';
 import { FaPlus } from 'react-icons/fa';
 import { GrFormSubtract } from "react-icons/gr";
-import { MdCreateNewFolder } from 'react-icons/md';
-import { MdOutlinePeopleAlt } from "react-icons/md";
+import { MdOutlinePeopleAlt } from 'react-icons/md';
+import { usePathname } from 'next/navigation';
+import { FaPeopleGroup } from "react-icons/fa6";
+
 const Menuber = () => {
+  const pathname = usePathname()
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
   const [isAdmin, setIsAdmin] = useState({});
@@ -81,6 +84,13 @@ const Menuber = () => {
           <RiFileCopy2Fill className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/applications`}>
             Applications
+          </Link>
+        </li>
+
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <FaPeopleGroup className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/allClients`}>
+            All Clients
           </Link>
         </li>
 
