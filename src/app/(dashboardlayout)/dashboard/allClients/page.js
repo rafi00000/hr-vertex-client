@@ -3,8 +3,62 @@
 import { TiPlus } from "react-icons/ti";
 import { BiListPlus } from "react-icons/bi";
 import { HiOutlineSelector } from "react-icons/hi";
+import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
 
-const page = () => {
+const usePage = () => {
+
+
+    const axios = useAxiosSecure();
+    // console.log(user)
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const FirstName = form.FirstName.value;
+        const LastName = form.LastName.value;
+        const Email = form.Email.value;
+        const password = form.Password.value;
+        const Company = form.Company.value;
+        const Phone = form.Phone.value;
+        const ClientId = form.ClientId.value;
+
+
+        const info = {
+            FirstName,
+            LastName,
+            Email,
+            password,
+            Company,
+            Phone,
+            ClientId
+        }
+        console.log(info);
+
+
+        try {
+            const res = await axios.post('http://localhost:5000/client', info)
+            if (res.data?.success) {
+                e.target.reset()
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Successfully Done ",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    }
+
+
+
+
+
+
     return (
         <div className='p-6'>
             <div className='flex justify-between items-center'>
@@ -17,16 +71,57 @@ const page = () => {
                         <BiListPlus size={22}></BiListPlus>
                     </div>
 
+                    {/* modal */}
+
                     <button className="btn btn-sm bg-red-700 text-white" onClick={() => document.getElementById('my_modal_3').showModal()}>
                         <span><TiPlus></TiPlus></span> Add Client</button>
 
-                    <dialog id="my_modal_3" className="modal ">
+                    <dialog id="my_modal_3" className="modal">
                         <div className="modal-box">
                             <form method="dialog">
-                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                <h1 className="font-bold text-xl">Add Client</h1>
+                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 bg-red-700 text-white">✕</button>
                             </form>
-                            <h3 className="font-bold text-lg">Hello!</h3>
-                            <p className="py-4">Press ESC key or click on ✕ button to close</p>
+                            <div className="mt-5">
+                                <form onSubmit={handleSubmit}>
+                                    <div className="grid gap-6 mb-6 md:grid-cols-2">
+                                        <div>
+                                            <label className="block mb-2 text-sm font-medium text-gray-900 ">First Name</label>
+                                            <input type="text" name="FirstName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="First Name" required />
+                                        </div>
+                                        <div>
+                                            <label className="block mb-2 text-sm font-medium text-gray-900 ">Last name</label>
+                                            <input type="text" name="LastName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Last Name" required />
+                                        </div>
+                                        <div>
+                                            <label className="block mb-2 text-sm font-medium text-gray-900 ">Company Name</label>
+                                            <input type="text" name="Company" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Company" required />
+                                        </div>
+                                        <div>
+                                            <label className="block mb-2 text-sm font-medium text-gray-900 ">Phone number</label>
+                                            <input type="number" name="Phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
+                                        </div>
+
+                                    </div>
+                                    <div className="mb-6">
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 ">Email address</label>
+                                        <input type="email" name="Email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Email" required />
+                                    </div>
+                                    <div className="mb-6">
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+                                        <input type="password" name="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required />
+                                    </div>
+                                    <div className="mb-6">
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 ">Client Id</label>
+                                        <input type="password" name="ClientId" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required />
+                                    </div>
+
+                                    <button className="w-full btn font-semibold  text-black bg-emerald-400 hover:bg-primary-700  focus:outline-none focus:ring-primary-300  rounded-lg text-sm px-5 py-2.5 text-center " >
+                                        Submit
+                                    </button>
+                                </form>
+
+                            </div>
                         </div>
                     </dialog>
 
@@ -73,7 +168,7 @@ const page = () => {
                                 <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                             </div>
                         </div>
-                        <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
+                        <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
                         <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
 
 
@@ -100,7 +195,7 @@ const page = () => {
                                 <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                             </div>
                         </div>
-                        <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
+                        <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
                         <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
 
 
@@ -127,7 +222,7 @@ const page = () => {
                                 <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                             </div>
                         </div>
-                        <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
+                        <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
                         <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
 
 
@@ -154,7 +249,7 @@ const page = () => {
                                 <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                             </div>
                         </div>
-                        <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
+                        <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
                         <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
 
 
@@ -175,4 +270,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default usePage;
