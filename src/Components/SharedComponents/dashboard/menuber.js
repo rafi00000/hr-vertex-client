@@ -15,6 +15,7 @@ import { GrFormSubtract } from "react-icons/gr";
 import { MdOutlinePeopleAlt } from 'react-icons/md';
 import { usePathname } from 'next/navigation';
 import { FaPeopleGroup } from "react-icons/fa6";
+import { LiaNotesMedicalSolid } from "react-icons/lia";
 
 const Menuber = () => {
   const pathname = usePathname()
@@ -23,6 +24,7 @@ const Menuber = () => {
   const [isAdmin, setIsAdmin] = useState({});
   const [IsOpen, setIsOpen] = useState(false);
   const [IsOpen1, setIsOpen1] = useState(false);
+  const [IsOpen2, setIsOpen2] = useState(false);
 
   useEffect(() => {
     fetch(`https://hr-vertex-server.vercel.app/users/${user?.email}`)
@@ -93,6 +95,39 @@ const Menuber = () => {
             All Clients
           </Link>
         </li>
+
+
+        <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+
+          <LiaNotesMedicalSolid size={30} className="text-xl" />
+          <p onClick={() => setIsOpen2((pre) => !pre)} className="p-3 pl-3 w-full" >
+            Leave Requests
+          </p>
+          {
+            !IsOpen2 ? <span><FaPlus size={11} className="text-xl" /></span> : <span><GrFormSubtract size={20} className="text-xl" /></span>
+          }
+        </li>
+
+        {
+          IsOpen2 &&
+          <ul>
+            <Link href={`/dashboard/allLeave`}>
+              <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+                <p className="p-3 text-sm pl-10 w-full" >
+                  All Leave Request
+                </p>
+              </li>
+            </Link>
+            <Link href={`/dashboard/addEmployee`}>
+              <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+                <p className="p-3 text-sm pl-10 w-full" >
+                 Leave Types
+                </p>
+              </li>
+            </Link>
+          </ul>
+        }
+
 
         {/* <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
           {
