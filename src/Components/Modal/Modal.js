@@ -1,65 +1,34 @@
 "use client";
 
-
-import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
 import { coreContext } from "@/provider/AuthContext";
-import { useContext } from "react";
-import Swal from 'sweetalert2';
+import { useContext, useState } from "react";
 
 
-const useModal = () => {
+
+const ApplicationModal = () => {
 
     const { user } = useContext(coreContext)
-    const axios = useAxiosSecure();
-    // console.log(user)
 
+    console.log(user)
+    const [formData, setFormData] = useState({
+        fullName: '',
+        emailAddress: '',
+        phoneNumber: '',
+        address: '',
+        education: '',
+        workExperience: '',
+        cv: '',
+    });
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const phone = form.phone.value;
-        const address = form.address.value;
-        const education = form.education.value;
-        const experience = form.experience.value;
-        const resume = form.resume.value;
-
-        const info = {
-            name,
-            email,
-            phone,
-            address,
-            education,
-            experience,
-            resume
-        }
-        // console.log(info);
-
-
-        try {
-            const res = await axios.post('/applications', info)
-            if (res.data?.success) {
-                e.target.reset()
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "applications posted ",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        } catch (error) {
-            console.log(error)
-        }
-
-
-    }
+        
+    };
 
 
     return (
-        <div>
-            <label htmlFor="my_modal_6" className="btn bg-emerald-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300">Apply Now</label>
+        <div> 
+            <label htmlFor="my_modal_6" className="btn btn-accent">Apply Now</label>
             <input type="checkbox" id="my_modal_6" className="modal-toggle" />
             <div className="modal" role="dialog">
                 <div className="modal-box">
@@ -71,7 +40,7 @@ const useModal = () => {
                                     type="text"
                                     defaultValue={user?.displayName}
                                     className="input input-bordered"
-                                    name="name"
+                                    name="fullName"
                                     required
                                 />
                             </div>
@@ -81,24 +50,23 @@ const useModal = () => {
                                     type="email"
                                     defaultValue={user?.email}
                                     className="input input-bordered"
-                                    name="email"
+                                    name="emailAddress"
                                     required
                                 />
                             </div>
                             <div className="form-control w-full">
                                 <label className="text-md font-semibold">Phone Number</label>
                                 <input
-                                    type="number"
+                                    type="tel"
                                     placeholder="Enter your phone number"
                                     className="input input-bordered"
-                                    name="phone"
+                                    name="phoneNumber"
                                     required
                                 />
                             </div>
                             <div className="form-control w-full">
                                 <label className="text-md font-semibold">Address</label>
                                 <input
-                                    type="text"
                                     placeholder="Enter your address"
                                     className="input input-bordered"
                                     name="address"
@@ -118,40 +86,34 @@ const useModal = () => {
                             <div className="form-control w-full">
                                 <label className="text-md font-semibold">Work Experience</label>
                                 <input
-                                    type="number"
                                     placeholder="Enter your work experience"
                                     className="input input-bordered"
-                                    name="experience"
+                                    name="workExperience"
                                     required
                                 />
                             </div>
 
                             <div className="form-control w-full">
-                                <label className="text-md font-semibold">resume Link</label>
+                                <label className="text-md font-semibold">CV Link</label>
                                 <input
-                                    type="text"
                                     placeholder="Enter your link"
                                     className="input input-bordered"
-                                    name="resume"
+                                    name="cv"
                                     required
                                 />
                             </div>
                             <div className="form-control w-full">
-                                <button type="submit" className="btn bg-emerald-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 mt-10">Submit Application</button>
+                                <button type="submit" className="btn btn-accent mt-10">Submit Application</button>
                             </div>
                         </form>
                     </div>
                     <div className="modal-action">
-                        <label htmlFor="my_modal_6" className="w-full btn bg-emerald-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300">Close!</label>
+                        <label htmlFor="my_modal_6" className="btn">Close!</label>
                     </div>
                 </div>
             </div>
         </div>
     );
-
-
-
-
 };
 
-export default useModal; 
+export default ApplicationModal;

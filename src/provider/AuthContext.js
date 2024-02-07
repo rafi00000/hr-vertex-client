@@ -9,9 +9,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 export const coreContext = createContext(null);
 
 const AuthContext = ({ children }) => {
-    const axiosSecure = useAxiosSecure()
-    const [user, setUser] = useState({});
-
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
     const googleProvider = new GoogleAuthProvider();
 
@@ -41,9 +39,8 @@ const AuthContext = ({ children }) => {
                 setLoading(false);
                 setUser(currentUser);
             }
-            else {
-                setUser({});
-
+            else{
+                setUser(null);
             }
             console.log(currentUser);
         });
