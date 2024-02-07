@@ -11,7 +11,7 @@ const useDashboardmain = async () => {
   const { user, loading } = useContext(coreContext);
 
   try {
-    const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 100 } } });
+    const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 5 } } });
     // console.log(response.data)
     if (response?.data?.data?.role === 'admin') {
       return (
