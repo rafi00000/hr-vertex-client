@@ -15,7 +15,7 @@ import { GrFormSubtract } from "react-icons/gr";
 import { MdOutlinePeopleAlt } from 'react-icons/md';
 import { usePathname } from 'next/navigation';
 import { FaPeopleGroup } from "react-icons/fa6";
-
+import { FaProjectDiagram } from "react-icons/fa";
 const Menuber = () => {
   const pathname = usePathname()
   const { user } = useContext(coreContext);
@@ -91,6 +91,12 @@ const Menuber = () => {
           <FaPeopleGroup className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/allClients`}>
             All Clients
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <FaProjectDiagram className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/projects`}>
+            projects
           </Link>
         </li>
 
