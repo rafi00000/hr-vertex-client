@@ -12,11 +12,9 @@ const AttendanceOne = () => {
     const [clockOutId, setClockOutId] = useState();
     const currentTime = Date.now();
     const newDate = new Date(currentTime);
-    const month = newDate.getMonth();
-    const year = newDate.getFullYear();
-    const day = newDate.getDate();
-    const finalDate = `${year}-${month}-${day}`;
+    const finalDate = format(newDate, 'yyyy-MM-dd');
     const monthName = format(newDate, 'MMMM');
+    console.log(finalDate);
 
 
     const data = {

@@ -16,13 +16,19 @@ const AttendancePage = () =>{
 
   const handleQuery = async(e) =>{
     e.preventDefault();
+    setData(null);
     const form = e.target;
     const date = form.date.value;
     const month = form.month.value;
     const name = form.name.value;
     console.log({date, month, name})
+    
+    // get the data from db
     axiosSecure.get(`/attendance?name=${name}&date=${date && date}&month=${month && month}`)
-    .then(res => console.log(res.data))
+    .then(res => {
+      console.log(res.data)
+      setData(res.data)
+    })
     .catch(err => console.log(err))
   }
 
@@ -44,6 +50,7 @@ const AttendancePage = () =>{
                 <div>
                 <label className="mr-2">Month</label>
                 <select name="month" className="input input-bordered">
+                  <option></option>
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
