@@ -1,5 +1,5 @@
-import Button from '@/Components/ClintSideComponents/Button'
 import useAxiosRequest from '@/axiosConfig/useAxiosRequest'
+import Modal from "@/Components/Modal/useModal"
 import React from 'react'
 
 const usePage = async ({ params }) => {
@@ -26,7 +26,7 @@ const usePage = async ({ params }) => {
                     <p className='pb-3 font-extrabold'>{data?.applicationDeadline?.split('T')[0]}
                     </p>
                     <span className='flex justify-end items-center'>
-                        <Button text='apply now' />
+                        <Modal></Modal>
                     </span>
                 </div>
             </>
