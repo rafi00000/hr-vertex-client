@@ -15,15 +15,17 @@ import { GrFormSubtract } from "react-icons/gr";
 import { MdOutlinePeopleAlt } from 'react-icons/md';
 import { usePathname } from 'next/navigation';
 import { FaPeopleGroup } from "react-icons/fa6";
-
+import { FaProjectDiagram } from "react-icons/fa";
+import { AiOutlineTeam } from "react-icons/ai";
+import { GrSubtractCircle } from 'react-icons/gr';
+import { MdCreateNewFolder } from 'react-icons/md';
 const Menuber = () => {
-  const pathname = usePathname()
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
   const [isAdmin, setIsAdmin] = useState({});
   const [IsOpen, setIsOpen] = useState(false);
   const [IsOpen1, setIsOpen1] = useState(false);
-
+  console.log(user)
   useEffect(() => {
     fetch(`https://hr-vertex-server.vercel.app/users/${user?.email}`)
       .then(res => res.json())
@@ -37,18 +39,22 @@ const Menuber = () => {
       className={`pl-5 bg-emerald-200 md:min-h-screen p-3 shadow-2xl relative ${show ? 'h-auto' : 'h-[65px]'} overflow-hidden`}
     >
       <div className='flex justify-start items-center  gap-4 border-b border-black pb-3'>
-        <Image
-          className='w-10 h-10 object-cover rounded-full'
-          src={user?.photoURL}
-          height={500}
-          width={500}
-          alt='img'
-        />
+        {
+          user?.photoURL && <Image
+            className='w-10 h-10 object-cover rounded-full'
+            src={user?.photoURL}
+            height={500}
+            width={500}
+            alt='profile image'
+          />
+        }
+
         <span className='flex flex-col justify-start items-start gap-0'>
           <p className='text-lg font-bold'>{user?.displayName}</p>
           <a className='-mt-1 text-xs' href='mailto:useremail'>
             {user?.email}
           </a>
+
         </span>
       </div>
       <TiThMenuOutline
@@ -59,31 +65,25 @@ const Menuber = () => {
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <CgProfile className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard`}>
-            Profile
+            profile
           </Link>
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <ImProfile className='text-xl' />
-          <Link className='p-3 w-full' href={`/dashboard/employees`}>
-            Employees
-          </Link>
-        </li>
-        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
-          <ImProfile className='text-xl' />
-          <Link className='p-3 w-full' href={`/dashboard/attendance`}>
-            Attendance
+          <Link className='p-3 w-full' href={`/dashboard/employee`}>
+            employees
           </Link>
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <RiUserSearchFill className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/recruitment`}>
-            Recruitment
+            recruitment
           </Link>
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <RiFileCopy2Fill className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/applications`}>
-            Applications
+            applications
           </Link>
         </li>
 
@@ -93,35 +93,18 @@ const Menuber = () => {
             All Clients
           </Link>
         </li>
-
-        {/* <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
-          {
-            !IsOpen ? <FaPlus className="text-xl" /> : <GrSubtractCircle className="text-xl" />
-          }
-          <p onClick={() => setIsOpen((prev) => !prev)} className="p-3 w-full" >
-            Skills & Training
-          </p>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <FaProjectDiagram className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/projects`}>
+            projects
+          </Link>
         </li>
-
-        {
-          IsOpen &&
-          <ul>
-            <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
-              <MdCreateNewFolder className="text-xl" />
-              <Link className="p-3 w-full" href={`/dashboard/create`}>
-                Create Program
-              </Link>
-            </li>
-            <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
-              <RiFileCopy2Fill className="text-xl" />
-              <Link className="p-3 w-full" href={`/dashboard`}>
-                Create Program
-              </Link>
-            </li>
-          </ul>
-        } */}
-
-        {/* second employed menubar */}
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <AiOutlineTeam className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/teams`}>
+            teams
+          </Link>
+        </li>
 
         <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
 

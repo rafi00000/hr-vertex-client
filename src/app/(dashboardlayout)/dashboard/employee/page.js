@@ -8,11 +8,15 @@ const usePage = async () => {
     const axiosSecure = useAxiosSecure();
     const router = useRouter()
     const { user } = useContext(coreContext)
+    //
     try {
+        const response = await axiosSecure.get(`/users/${user?.email}`, { params: { next: { revalidate: 100 } } });
+        console.log(response.data)
+        if (response?.data?.data?.role === 'admin') {
             const res = await axiosSecure.get('/users', { params: { next: { revalidate: 100 } } });
             const userData = res.data
             return (
-                <div className="overflow-x-auto h-screen overflow-y-auto" >
+                <div className="overflow-x-auto" >
                     <h3 className='uppercase text-3xl font-bold pt-10 pb-3 text-center'>all employees</h3>
                     <p className='text-right'><button className='btn bg-emerald-400 hover:bg-emerald-400 hover:text-white'> + Create an Employee</button></p>
                     <table className="table">
@@ -49,6 +53,10 @@ const usePage = async () => {
                 </div >
 
             );
+        } else {
+            router.push('/')
+        }
+
     } catch (error) {
         // Handle error appropriately
         console.error("Error fetching user data:", error);

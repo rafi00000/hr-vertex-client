@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
-
 const useLoginPage = () => {
   const router = useRouter();
   const { logIn, googleLogIn } = useContext(coreContext);
