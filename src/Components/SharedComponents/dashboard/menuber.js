@@ -14,7 +14,7 @@ import { FaPlus } from 'react-icons/fa';
 import { GrFormSubtract } from "react-icons/gr";
 import { MdOutlinePeopleAlt } from 'react-icons/md';
 import { usePathname } from 'next/navigation';
-import { FaPeopleGroup } from "react-icons/fa6";
+import { FaBriefcase, FaPeopleGroup } from "react-icons/fa6";
 
 const Menuber = () => {
   const pathname = usePathname()
@@ -65,6 +65,12 @@ const Menuber = () => {
           <ImProfile className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/employees`}>
             Employees
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <FaBriefcase className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/departments`}>
+            Departments
           </Link>
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>

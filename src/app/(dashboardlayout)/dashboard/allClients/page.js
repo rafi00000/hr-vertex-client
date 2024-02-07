@@ -4,6 +4,7 @@ import { TiPlus } from "react-icons/ti";
 import { BiListPlus } from "react-icons/bi";
 import { HiOutlineSelector } from "react-icons/hi";
 import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
+import Image from "next/image";
 
 const usePage = () => {
 
@@ -22,7 +23,6 @@ const usePage = () => {
         const Phone = form.Phone.value;
         const ClientId = form.ClientId.value;
 
-
         const info = {
             FirstName,
             LastName,
@@ -33,7 +33,6 @@ const usePage = () => {
             ClientId
         }
         console.log(info);
-
 
         try {
             const res = await axios.post('http://localhost:5000/client', info)
@@ -50,15 +49,7 @@ const usePage = () => {
         } catch (error) {
             console.log(error)
         }
-
-
     }
-
-
-
-
-
-
     return (
         <div className='p-6'>
             <div className='flex justify-between items-center'>
@@ -165,7 +156,7 @@ const usePage = () => {
                     <div className="flex flex-col items-center pb-10">
                         <div className="avatar online">
                             <div className="w-16 rounded-full">
-                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                <Image alt="" height={100} width={100} src="" />
                             </div>
                         </div>
                         <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
@@ -192,7 +183,7 @@ const usePage = () => {
                     <div className="flex flex-col items-center pb-10">
                         <div className="avatar offline">
                             <div className="w-16 rounded-full">
-                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            <Image alt="" height={100} width={100} src="" />
                             </div>
                         </div>
                         <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
@@ -219,7 +210,7 @@ const usePage = () => {
                     <div className="flex flex-col items-center pb-10">
                         <div className="avatar online">
                             <div className="w-16 rounded-full">
-                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            <Image alt="" height={100} width={100} src="" />
                             </div>
                         </div>
                         <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
@@ -246,26 +237,19 @@ const usePage = () => {
                     <div className="flex flex-col items-center pb-10">
                         <div className="avatar online">
                             <div className="w-16 rounded-full">
-                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            <Image alt="" height={100} width={100} src="" />
                             </div>
                         </div>
                         <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
                         <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
 
-
                         <div className="flex gap-1 mt-4 md:mt-6">
                             <a href="#" className="inline-flex items-center px-2 py-2  font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  ms-3 text-xs">Message</a>
-
                             <a href="#" className="inline-flex items-center px-2 py-2  font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  ms-3 text-xs">View Profile</a>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
-
-
         </div>
     );
 };
