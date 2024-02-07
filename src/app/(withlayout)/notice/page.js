@@ -23,7 +23,7 @@ const usePage = async () => {
                             <p className='text-gray-500 font-semibold py-1'> department : {item?.department}</p>
                             <p className='pb-2 opacity-80'>responsibilities :  {item?.responsibilities.slice(0, 150)}</p>
                             <Link className='flex justify-end items-center pt-2' href={`notice/${item?._id}`}>
-                                <Button  text=' details' />
+                                <Button text=' details' />
                             </Link>
                         </div>)
                     }
