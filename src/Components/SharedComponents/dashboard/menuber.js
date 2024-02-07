@@ -54,8 +54,7 @@ const Menuber = () => {
       <ul className='pt-3 uppercase font-semibold flex flex-col gap-2 '>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <CgProfile className='text-xl' />
-          <Link className='p-3 w-full' href={`/dashboard`}>
-            Profile
+          <Link className='p-3 w-full' href={`/dashboard`}>            Profile
           </Link>
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
@@ -66,7 +65,13 @@ const Menuber = () => {
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <ImProfile className='text-xl' />
-          <Link className='p-3 w-full' href={`/dashboard/attendance`}>
+          <Link className='p-3 w-full' href={`/dashboard/attendanceAll`}>
+            Attendance Reports
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <ImProfile className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/attendanceOne`}>
             Attendance
           </Link>
         </li>
