@@ -4,11 +4,13 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebaseConfig/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
+import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
 
 
 export const coreContext = createContext(null);
 
 const AuthContext = ({ children }) => {
+    const axiosSecure = useAxiosSecure()
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
     const googleProvider = new GoogleAuthProvider();
@@ -36,10 +38,14 @@ const AuthContext = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             if (currentUser) {
-                setLoading(false);
                 setUser(currentUser);
+                axiosSecure.get(`/users/${currentUser?.email}`, { params: { next: { revalidate: 100 } } })
+                .then((res)=>{
+                    setLoading(false);
+                    console.log(res.data,currentUser)
+                });
             }
-            else{
+            else {
                 setUser(null);
             }
             console.log(currentUser);
