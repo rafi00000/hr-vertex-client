@@ -54,7 +54,7 @@ const Navber = () => {
             </>
           ) : (
             <Link href="/login">
-              <Button text={"SIGN IN"} />
+              <Button text={"SING IN"} />
             </Link>
           )}
         </div>

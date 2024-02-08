@@ -1,25 +1,20 @@
 "use client";
 
-import useAxiosRequest from "@/axiosConfig/useAxiosRequest";
-import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
-import { useState } from "react";
+// import register from "@/Components/firbaseAutentication/register";
+import DataPost from "@/config/DataPost";
+import { coreContext } from "@/provider/AuthContext";
+import axios from "axios";
+import { updateProfile } from "firebase/auth";
+import { useContext, useState } from "react";
 import Swal from 'sweetalert2';
 
 
 const AddEmployees = () => {
-
-    const [Data, SetData] = useState("")
-    const [gender, SetGender] = useState("")
-    const [salary, SetSalary] = useState("")
-    const axiosrequest = useAxiosRequest();
-    const axios = useAxiosSecure();
-    const imageapikey = process.env.VITE_IMAGE_API_KEY;
+    const [loading, setloading] = useState(false);
+    const { createUserEmail } = useContext(coreContext);
     const image_hosting_api = `https://api.imgbb.com/1/upload?key=5201d474546c521dc75dd9c96eea7a84`;
-
-
-
     const HandelSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const form = e.target;
         const FullName = form.FullName.value;
         const email = form.email.value;
@@ -29,8 +24,11 @@ const AddEmployees = () => {
         const PhoneNumber = form.PhoneNumber.value;
         const photo = form.photo.files[0];
         const role = form.role.value;
+        const Designation = form.Department.value;
+        const Gender = form.Gender.value;
+        const Salary = form.salary.value;
 
-        const res = await axiosrequest.post(
+        const res = await axios.post(
             image_hosting_api,
             { image: photo },
             {
@@ -41,56 +39,55 @@ const AddEmployees = () => {
         );
 
         const PhotoUrl = res.data.data.display_url
-        // console.log(PhotoUrl)
-
         const info = {
             FullName,
             email,
             password,
-            Gender: gender,
-            Salary: salary,
+            Gender,
+            Salary,
             Address,
-            Designation: Data,
+            Designation,
             JoiningDate,
             PhoneNumber,
             photo: PhotoUrl,
             role,
         }
-
-        // console.log(info)
-
-
-        try {
-            const res = await axios.post('http://localhost:5000/users', info)
-            // console.log(res)
-            if (res.data?.success) {
+        if (res.data.success) {
+            const responce = await DataPost('users', info)
+            console.log(responce)
+            if (responce.data?.success) {
                 e.target.reset()
+                setloading(false);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: " posted ",
+                    title: `account created succesfuly`,
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
                 });
             }
-        } catch (error) {
-            console.log(error)
+        } else {
+            setloading(false);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: "unable to create new user",
+            });
         }
-
     };
 
     return (
         <div>
-            <div className='px-6 mt-2'>
+            <div className='px-6 py-10'>
                 <h1 className="pb-7 font-semibold text-lg">Add Employee</h1>
                 <form
                     onSubmit={HandelSubmit}
                     className="space-y-4 md:space-y-6  mt-1"
-                    action="#"
                 >
                     <div className="grid grid-cols-2 gap-6" >
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            <label className="block mb-2 text-sm font-medium text-gray-900 ">
                                 Full Name :
                             </label>
                             <input
@@ -102,11 +99,11 @@ const AddEmployees = () => {
                             />
                         </div>
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            <label className="block mb-2 text-sm font-medium text-gray-900 ">
                                 Employee Id :
                             </label>
                             <input
-                                type="number"
+                                type="text"
                                 name="password"
                                 placeholder="Employee Id"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  "
@@ -116,7 +113,7 @@ const AddEmployees = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-6" >
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            <label className="block mb-2 text-sm font-medium text-gray-900 ">
                                 Email :
                             </label>
                             <input
@@ -128,7 +125,7 @@ const AddEmployees = () => {
                             />
                         </div>
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            <label className="block mb-2 text-sm font-medium text-gray-900 ">
                                 Joining Date :
                             </label>
                             <input
@@ -142,22 +139,22 @@ const AddEmployees = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-6" >
                         <div>
-                            <label class="block  text-sm font-medium text-gray-900 dark:text-white">  Designation :</label>
-                            <select onChange={(e) => SetData(e.target.value)} class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
-                                <option selected>Choose one</option>
-                                <option   >Accounts</option>
-                                <option >Marketing</option>
-                                <option>Support</option>
-                                <option  >Manager</option>
-                                <option  >CEO</option>
+                            <label class="block  text-sm font-medium text-gray-900 ">  Department :</label>
+                            <select required name="Department" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
+                                <option value={''} selected>Choose one</option>
+                                <option value={'Accounts'} >Accounts</option>
+                                <option value={'Marketing'} >Marketing</option>
+                                <option value={'Support'} >Support</option>
+                                <option value={'development'} >development</option>
+                                <option value={'graphics'}  >graphics</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block  text-sm font-medium text-gray-900 dark:text-white"> Gender:</label>
-                            <select onChange={(e) => SetGender(e.target.value)} id="small" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
+                            <label class="block  text-sm font-medium text-gray-900 "> Gender:</label>
+                            <select required name="Gender" id="small" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
                                 <option selected>Choose one</option>
-                                <option  >Male</option>
-                                <option >Female</option>
+                                <option value={'Male'}>Male</option>
+                                <option value={'Female'}>Female</option>
                             </select>
                         </div>
 
@@ -165,7 +162,7 @@ const AddEmployees = () => {
 
                     <div className="grid grid-cols-2 gap-6" >
                         <div>
-                            <label className="block  text-sm font-medium text-gray-900 dark:text-white">
+                            <label className="block  text-sm font-medium text-gray-900 ">
                                 Phone Number :
                             </label>
                             <input
@@ -177,26 +174,26 @@ const AddEmployees = () => {
                             />
                         </div>
                         <div>
-                            <label class="block  text-sm font-medium text-gray-900 dark:text-white"> salary :</label>
-                            <select onChange={(e) => SetSalary(e.target.value)} class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
-                                <option selected>Choose one</option>
-                                <option >10000</option>
-                                <option  >20000</option>
-                                <option  >30000</option>
-                                <option  >40000</option>
-                                <option  >50000</option>
-                                <option  >60000</option>
-                                <option  >70000</option>
-                                <option  >80000</option>
-                                <option  >90000</option>
-                                <option  >100000</option>
+                            <label class="block  text-sm font-medium text-gray-900 "> salary :</label>
+                            <select required name="salary" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
+                                <option value={''} selected>Choose one</option>
+                                <option value={'10000'}>10000</option>
+                                <option value={'15000'}>15000</option>
+                                <option value={'20000'}>20000</option>
+                                <option value={'25000'}>25000</option>
+                                <option value={'30000'}>30000</option>
+                                <option value={'35000'}>35000</option>
+                                <option value={'45000'}>45000</option>
+                                <option value={'60000'}>60000</option>
+                                <option value={'80000'}>80000</option>
+                                <option value={'100000'}>100000</option>
                             </select>
                         </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-6">
                         <div>
-                            <label className="block  text-sm font-medium text-gray-900 dark:text-white">
+                            <label className="block  text-sm font-medium text-gray-900 ">
                                 Address :
                             </label>
                             <input
@@ -208,7 +205,7 @@ const AddEmployees = () => {
                             />
                         </div>
                         <div>
-                            <label className="block  text-sm font-medium text-gray-900 dark:text-white">
+                            <label className="block  text-sm font-medium text-gray-900 ">
                                 Role :
                             </label>
                             <input
@@ -222,7 +219,7 @@ const AddEmployees = () => {
                     </div>
 
                     <div>
-                        <label className="block  text-sm font-medium text-gray-900 dark:text-white">
+                        <label className="block  text-sm font-medium text-gray-900 ">
                             Photo :
                         </label>
                         <input
@@ -237,8 +234,8 @@ const AddEmployees = () => {
                         type="submit"
                         className="w-full btn  text-black bg-emerald-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
-                        {" "}
-                        Submit
+                        {loading ? 'loading...' : 'create'}
+
                     </button>
                 </form>
             </div>

@@ -54,11 +54,6 @@ const usePage = () => {
 
     }
 
-
-
-
-
-
     return (
         <div className='p-6'>
             <div className='flex justify-between items-center'>
@@ -261,10 +256,139 @@ const usePage = () => {
                     </div>
                 </div>
 
+                <div className=" bg-white border border-gray-200 rounded-lg shadow">
+                    <div className="flex justify-end px-4 pt-4">
+                        <button id="dropdownButton" data-dropdown-toggle="dropdown" className="inline-block text-gray-500  rounded-lg text-sm p-1.5" type="button">
+                            <span className="sr-only">Open dropdown</span>
+                            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="flex flex-col items-center pb-10">
+                        <div className="avatar online">
+                            <div className="w-16 rounded-full">
+                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            </div>
+                        </div>
+                        <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
 
+
+                        <div className="flex gap-1 mt-4 md:mt-6">
+                            <a href="#" className="inline-flex items-center px-2 py-2  font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  ms-3 text-xs">Message</a>
+
+                            <a href="#" className="inline-flex items-center px-2 py-2  font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  ms-3 text-xs">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className=" bg-white border border-gray-200 rounded-lg shadow">
+                    <div className="flex justify-end px-4 pt-4">
+                        <button id="dropdownButton" data-dropdown-toggle="dropdown" className="inline-block text-gray-500  rounded-lg text-sm p-1.5" type="button">
+                            <span className="sr-only">Open dropdown</span>
+                            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="flex flex-col items-center pb-10">
+                        <div className="avatar online">
+                            <div className="w-16 rounded-full">
+                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            </div>
+                        </div>
+                        <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
+
+
+                        <div className="flex gap-1 mt-4 md:mt-6">
+                            <a href="#" className="inline-flex items-center px-2 py-2  font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  ms-3 text-xs">Message</a>
+
+                            <a href="#" className="inline-flex items-center px-2 py-2  font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  ms-3 text-xs">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className=" bg-white border border-gray-200 rounded-lg shadow">
+                    <div className="flex justify-end px-4 pt-4">
+                        <button id="dropdownButton" data-dropdown-toggle="dropdown" className="inline-block text-gray-500  rounded-lg text-sm p-1.5" type="button">
+                            <span className="sr-only">Open dropdown</span>
+                            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="flex flex-col items-center pb-10">
+                        <div className="avatar online">
+                            <div className="w-16 rounded-full">
+                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            </div>
+                        </div>
+                        <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
+
+
+                        <div className="flex gap-1 mt-4 md:mt-6">
+                            <a href="#" className="inline-flex items-center px-2 py-2  font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  ms-3 text-xs">Message</a>
+
+                            <a href="#" className="inline-flex items-center px-2 py-2  font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  ms-3 text-xs">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className=" bg-white border border-gray-200 rounded-lg shadow">
+                    <div className="flex justify-end px-4 pt-4">
+                        <button id="dropdownButton" data-dropdown-toggle="dropdown" className="inline-block text-gray-500  rounded-lg text-sm p-1.5" type="button">
+                            <span className="sr-only">Open dropdown</span>
+                            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="flex flex-col items-center pb-10">
+                        <div className="avatar online">
+                            <div className="w-16 rounded-full">
+                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            </div>
+                        </div>
+                        <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
+
+
+                        <div className="flex gap-1 mt-4 md:mt-6">
+                            <a href="#" className="inline-flex items-center px-2 py-2  font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  ms-3 text-xs">Message</a>
+
+                            <a href="#" className="inline-flex items-center px-2 py-2  font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  ms-3 text-xs">View Profile</a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-
+            <div className=" flex justify-end mt-5 mb-3 mr-2">
+                <nav aria-label="Page navigation example">
+                    <ul class="inline-flex -space-x-px text-base h-10">
+                        <li>
+                            <a href="#" class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
 
         </div>
     );
