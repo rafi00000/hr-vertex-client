@@ -21,7 +21,7 @@ const usePage = async () => {
                         data?.map(item => <div className='bg-opacity-45 shadow-sm rounded p-4 my-4 border' key={item?._id}>
                             <h3 className='text-xl font-bold'>{item?.position}</h3>
                             <p className='text-gray-500 font-semibold py-1'> department : {item?.department}</p>
-                            <p className='pb-2 opacity-80'>responsibilities :  {item?.responsibilities?.slice(0, 150)}</p>
+                            <p className='pb-2 opacity-80'>responsibilities :  {item?.responsibilities.slice(0, 150)}</p>
                             <Link className='flex justify-end items-center pt-2' href={`notice/${item?._id}`}>
                                 <Button  text=' details' />
                             </Link>
