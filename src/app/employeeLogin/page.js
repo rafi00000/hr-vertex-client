@@ -5,11 +5,16 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import useAxiosRequest from './../../axiosConfig/useAxiosRequest';
 
 const EmployeeLogin = () => {
-  const { logIn } = useContext(coreContext);
+
+  const { logIn, createUserEmail } = useContext(coreContext);
   const router = useRouter();
   const [show, setShow] = useState(false)
+  const axiosPublic = useAxiosRequest();
+
+
     const handleEmployeeLogin = (e) =>{
         e.preventDefault();
         const form = e.target;
@@ -28,12 +33,49 @@ const EmployeeLogin = () => {
           });
           router.push("/dashboard");
         })
-        .catch((error) => {
-          Swal.fire({
-            icon: "error",
-            title: "Wrong Credentials",
-            text: `${error.message}`,
-          });
+        .catch((error) => {~
+
+          axiosPublic.get(`/users/${email}`).then(res => {
+            const user = res.data.data;
+            const name = user?.FullName; 
+            const password = user?._id;
+            const photo = user?.photo;
+            console.log(user);
+            //if exist
+            if(user){
+              createUserEmail(email, password)
+              .then(data => {
+                const user = data.user;
+              updateProfile(data.user, {
+                displayName: name,
+                photoURL: photo,
+              })
+              .then(res => {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Success",
+                  showConfirmationButton: false,
+                  timer: 1500,
+                });
+              })
+              .catch(err => console.log(err))
+              })
+              .catch(err =>{
+                Swal.fire({
+                  position: "center",
+                  icon: "error",
+                  title: "Operation Failed",
+                  showConfirmationButton: false,
+                  timer: 1500,
+                });
+              })
+            }
+            else{
+              router.push("/")
+            }
+          })
+          .catch(err => console.log(err));
         });
     } catch (error) {
       console.log(error);

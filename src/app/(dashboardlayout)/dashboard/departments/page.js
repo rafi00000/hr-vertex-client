@@ -3,7 +3,8 @@
 import useAxiosSecure from '@/axiosConfig/useAxiosSecure';
 import Router from 'next/router';
 import { useState, useEffect } from 'react';
-import toast from 'react-hot-toast';
+import { FaRegTrashAlt } from 'react-icons/fa';
+import { FaPen } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 
 const DepartmentsPage = () => {
@@ -106,7 +107,7 @@ const DepartmentsPage = () => {
             <div className='flex gap-3 items-center'>
                 <label>item per page</label>
                 <select name="page" className='input input-bordered' onChange={(e) => setLimit(parseInt(e.target.value))}>
-                    <option>10</option>
+                    <option >10</option>
                     <option>15</option>
                     <option>25</option>
                 </select>
@@ -148,8 +149,8 @@ const DepartmentsPage = () => {
                         <td>{department?.dept_head}</td>
                         <td>{department?.total_emp}</td>
                         <td className='flex gap-2'>
-                            <button className='btn btn-square bg-yellow-500 hover:bg-yellow-600 text-white'>+</button>
-                            <button className='btn btn-square bg-red-500 hover:bg-red-600 text-white'>-</button>
+                            <button className='btn btn-square bg-yellow-500 hover:bg-yellow-600 text-white'><FaPen /></button>
+                            <button className='btn btn-square bg-red-500 hover:bg-red-600 text-white'><FaRegTrashAlt /></button>
                         </td>
                     </tr>)
                     }
@@ -157,11 +158,19 @@ const DepartmentsPage = () => {
                 </table>
             </div>
             <div className='flex gap-2 justify-center items-center'>
-                {
-                    pages?.map((page, idx) => <p key={idx} className='text-center'><button onClick={() => setCurrentPage(page)} className={`btn btn-square ${currentPage === idx && "bg-emerald-400 hover:bg-emerald-500 text-white"} `}>{idx + 1}</button></p>)
-                }
-                
-            </div>
+    {
+        pages?.map((page, idx) => (
+            <p key={idx} className='text-center'>
+                <button
+                    onClick={() => setCurrentPage(page)}
+                    className={`btn btn-square ${currentPage === page && "bg-emerald-400 hover:bg-emerald-500 text-white"}`}
+                >
+                    {page}
+                </button>
+            </p>
+        ))
+    }
+</div>
         </div>
     );
 };
