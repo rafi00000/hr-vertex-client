@@ -13,6 +13,7 @@ export const coreContext = createContext(null);
 const AuthContext = ({ children }) => {
     const axiosSecure = useAxiosSecure()
     const [user, setUser] = useState({});
+
     const [loading, setLoading] = useState(false);
     const googleProvider = new GoogleAuthProvider();
 
@@ -56,6 +57,7 @@ const AuthContext = ({ children }) => {
             }
             else {
                 setUser({});
+
             }
             // console.log(currentUser);
         });
