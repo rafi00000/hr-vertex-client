@@ -17,27 +17,14 @@ import { usePathname } from 'next/navigation';
 import { FaPeopleGroup } from "react-icons/fa6";
 import { FaProjectDiagram } from "react-icons/fa";
 import { AiOutlineTeam } from "react-icons/ai";
-<<<<<<< HEAD
+
 import { BsCashCoin } from "react-icons/bs";
-=======
 import { GrSubtractCircle } from 'react-icons/gr';
 import { MdCreateNewFolder } from 'react-icons/md';
->>>>>>> a35d5ed9acdec4e01be271670574d2041faf7779
 const Menuber = () => {
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
-  const [isAdmin, setIsAdmin] = useState({});
-  const [IsOpen, setIsOpen] = useState(false);
   const [IsOpen1, setIsOpen1] = useState(false);
-  // console.log(user)
-  useEffect(() => {
-    fetch(`https://hr-vertex-server.vercel.app/users/${user?.email}`)
-      .then(res => res.json())
-      .then(data => {
-        setIsAdmin(data);
-      })
-  }, [user?.email])
-
   return (
     <div
       className={`pl-5 bg-emerald-200 h-screen p-3 shadow-2xl relative ${show ? 'h-auto' : 'h-[65px]'} overflow-y-auto`}
@@ -160,5 +147,6 @@ const Menuber = () => {
     </div>
   );
 };
+
 
 export default Menuber;
