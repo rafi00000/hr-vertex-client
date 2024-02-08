@@ -53,13 +53,14 @@ const AuthContext = ({ children }) => {
         return () => {
             unSubscribe();
         }
-    }, [])
+    }, [axiosSecure])
 
     const authInfo = {
         createUserEmail,
         logOut,
         googleLogIn,
-        logIn, user,
+        logIn,
+        user,
         loading
     };
 

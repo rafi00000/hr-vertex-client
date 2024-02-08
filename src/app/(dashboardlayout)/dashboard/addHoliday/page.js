@@ -2,9 +2,8 @@
 import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-const page = () => {
+const AddHoliday = () => {
   const router = useRouter();
-  const [loading, setloading] = useState(false);
   const axioSecure = useAxiosSecure()
   const handleForm = (e) => {
     e.preventDefault();
@@ -68,4 +67,4 @@ const page = () => {
   );
 }
 
-export default page
+export default AddHoliday;

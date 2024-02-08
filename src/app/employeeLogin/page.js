@@ -35,7 +35,8 @@ const EmployeeLogin = () => {
         })
         .catch((error) => {~
 
-          axiosPublic.get(`/users/${email}`).then(res => {
+          axiosPublic.get(`/users/${email}`)
+          .then(res => {
             const user = res.data.data;
             const name = user?.FullName; 
             const password = user?._id;
@@ -57,11 +58,12 @@ const EmployeeLogin = () => {
                   title: "Success",
                   showConfirmationButton: false,
                   timer: 1500,
-                });
+                })
               })
-              .catch(err => console.log(err))
+              .catch(err => console.log("profile update error", err))
               })
               .catch(err =>{
+                // creating user err
                 Swal.fire({
                   position: "center",
                   icon: "error",
@@ -72,13 +74,16 @@ const EmployeeLogin = () => {
               })
             }
             else{
-              router.push("/")
+              router.push("/");
             }
           })
-          .catch(err => console.log(err));
+          // finished fetching user
+
+          .catch(err => router.push("/"));
         });
-    } catch (error) {
-      console.log(error);
+    }
+    catch (error) {
+      router.push("/")
     }
   }
 

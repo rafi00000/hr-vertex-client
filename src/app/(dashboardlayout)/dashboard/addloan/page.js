@@ -3,7 +3,7 @@ import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
 import { coreContext } from "@/provider/AuthContext";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
-const page = () => {
+const AddLoan = () => {
   const router = useRouter();
   const [loading, setloading] = useState(false);
   const axioSecure = useAxiosSecure()
@@ -70,4 +70,4 @@ const page = () => {
   );
 }
 
-export default page
+export default AddLoan

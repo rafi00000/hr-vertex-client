@@ -6,11 +6,11 @@ import { useState, useEffect } from 'react';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { FaPen } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
+import Link from 'next/link';
 
 const DepartmentsPage = () => {
     const [departments, setDepartments] = useState([])
     const [employee, setEmployee] = useState([]);
-    const axiosSecure = useAxiosSecure()
     const [search, setSearch] = useState('');
     const [limit, setLimit] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
@@ -19,25 +19,26 @@ const DepartmentsPage = () => {
     const pages = [...Array(numberOfPage).keys()]
 
     useEffect(() =>{
-        axiosSecure.get(`/departments?p=${currentPage}&l=${limit}&s=${search}`)
-        .then(res => {
-            setDepartments(res.data)
-        })
+        fetch(`http://localhost:5000/departments?p=${currentPage}&l=${limit}&s=${search}`)
+        .then(res => res.json())
+        .then(data => setDepartments(data))
         .catch(err => {
             console.log(err);
         })
 
-        axiosSecure.get("/users")
-        .then(res => {
-            setEmployee(res.data)
-        })
+        fetch("http://localhost:5000/users")
+        .then(res => res.json())
+        .then(data => setEmployee(data))
         .catch(err =>{
             console.log(err);
         })
 
-        // for pagination
-        axiosSecure.get("/departments/count").then(res => setItems(res.data.count))
-    }, [axiosSecure, currentPage, limit, search]);
+        fetch("http://localhost:5000/departments/count")
+        .then(res => res.json())
+        .then(data => {
+            setItems(data)
+        })
+    }, [currentPage, limit, search]);
 
     const handleCreateDepartment = (e) =>{
         e.preventDefault();
@@ -149,7 +150,7 @@ const DepartmentsPage = () => {
                         <td>{department?.dept_head}</td>
                         <td>{department?.total_emp}</td>
                         <td className='flex gap-2'>
-                            <button className='btn btn-square bg-yellow-500 hover:bg-yellow-600 text-white'><FaPen /></button>
+                            <Link href={`/dashboard/departments/${department._id}`}><button className='btn btn-square bg-yellow-500 hover:bg-yellow-600 text-white'><FaPen /></button></Link>
                             <button className='btn btn-square bg-red-500 hover:bg-red-600 text-white'><FaRegTrashAlt /></button>
                         </td>
                     </tr>)
