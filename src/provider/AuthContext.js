@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebaseConfig/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
 import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
+import DataGet from "@/config/DataGet";
 
 
 export const coreContext = createContext(null);
@@ -38,17 +39,25 @@ const AuthContext = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             if (currentUser) {
-                setUser(currentUser);
-                axiosSecure.get(`/users/${currentUser?.email}`, { params: { next: { revalidate: 100 } } })
-                .then((res)=>{
+                const userData = {
+                    FullName: currentUser?.displayName,
+                    email: currentUser?.email,
+                    photo: currentUser?.photoURL,
+                }
+                setUser(userData);
+                const fetchdata = async () => {
+                    const res = await DataGet(`users/${currentUser?.email}`)
                     setLoading(false);
-                    console.log(res.data,currentUser)
-                });
+                    if (res?.data) {
+                        setUser(res?.data);
+                    }
+                }
+                fetchdata()
             }
             else {
                 setUser({});
             }
-            console.log(currentUser);
+            // console.log(currentUser);
         });
         return () => {
             unSubscribe();

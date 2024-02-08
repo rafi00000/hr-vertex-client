@@ -1,17 +1,12 @@
 'use client'
 
-import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
 import { coreContext } from "@/provider/AuthContext"
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react"
 
 const usePage = async () => {
-    const axiosSecure = useAxiosSecure();
     const { user } = useContext(coreContext)
-    if (user) {
-        const res = await axiosSecure.get(`/loan`, { params: { next: { revalidate: 100 } } });
-        const data = res.data;
         return (
             <div >
                 <span className="flex justify-end items-center py-3 pr-4"><Link className="btn bg-emerald-400" href={'addholyday'}>add new</Link></span>
@@ -29,7 +24,7 @@ const usePage = async () => {
                                 <th>actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        {/* <tbody>
                             {
                                 data.map(item => <tr key={item?._id}>
                                     <td>
@@ -45,13 +40,13 @@ const usePage = async () => {
                                     </td>
                                 </tr>)
                             }
-                        </tbody>
+                        </tbody> */}
                     </table>
                 </div>
             </div>
         )
 
-    }
+    
 
 }
 

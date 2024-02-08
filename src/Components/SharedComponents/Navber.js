@@ -47,9 +47,9 @@ const Navber = () => {
           
         </div>
         <div className="flex justify-end items-center gap-2">
-          {user?.displayName ? (
+          {user?.FullName ? (
             <>
-              <span>{user?.displayName}</span>
+              <span>{user?.FullName}</span>
               <Button handeler={logOut} text="sign out" />
             </>
           ) : (
