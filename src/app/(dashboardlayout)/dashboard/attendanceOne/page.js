@@ -1,12 +1,14 @@
 'use client'
 
 import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { format } from 'date-fns';
+import { coreContext } from "@/provider/AuthContext";
 
 
 const AttendanceOne = () => {
+    const {user: employee} = useContext(coreContext);
     const axiosSecure = useAxiosSecure();
     const [user, setUser] = useState();
     const [clockOutId, setClockOutId] = useState();
@@ -14,7 +16,7 @@ const AttendanceOne = () => {
     const newDate = new Date(currentTime);
     const finalDate = format(newDate, 'yyyy-MM-dd');
     const monthName = format(newDate, 'MMMM');
-    console.log(finalDate);
+
 
 
     const data = {
@@ -26,11 +28,12 @@ const AttendanceOne = () => {
     }
 
     useEffect(() =>{
-        axiosSecure.get("/users/riad807@gmail.com")
+        axiosSecure.get(`/users/${employee?.email}`)
         .then(data =>{
             setUser(data.data.data);
         })
-    }, [axiosSecure])
+    }, [axiosSecure, employee])
+
 
     const handleClockIn = async() =>{
         axiosSecure.post("/attendance", data)

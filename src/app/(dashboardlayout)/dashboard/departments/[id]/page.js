@@ -6,12 +6,16 @@ import Swal from 'sweetalert2';
 
 const UpdateDepartment = ({params}) => {
     const {id} = params;
+
     const axiosSecure = useAxiosSecure();
     const [data, setData] = useState({})
 
 
-    useEffect(() => {
-        axiosSecure.get(`/departments/${id}`)
+    useEffect(() => {  
+    if(id == "count"){
+        return
+    }   
+    axiosSecure.get(`/departments/${id}`)
         .then(res =>{
             setData(res.data);
         })
@@ -21,11 +25,10 @@ const UpdateDepartment = ({params}) => {
     const handleUpdate = async(e) => {
         e.preventDefault();
         const form = e.target;
-        const name = form.name.value;
-        console.log(name)
-        const head = form.head.value;
-        const employee = form.emp.value;
-        const data = {name, head, employee};
+        const dept_name = form.name.value;
+        const dept_head = form.head.value;
+        const total_emp = form.emp.value;
+        const data = {dept_name, dept_head, total_emp};
         console.log(data)
         
         axiosSecure.put(`/departments/${id}`, data)

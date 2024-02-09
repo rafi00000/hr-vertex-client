@@ -15,7 +15,7 @@ const DepartmentsPage = () => {
     const [limit, setLimit] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
     const [items, setItems] = useState(0);
-    const numberOfPage = Math.ceil(parseInt(items) / limit);
+    const numberOfPage = Math.ceil(parseInt(items) / parseInt(limit));
     const pages = [...Array(numberOfPage).keys()]
 
     useEffect(() =>{
@@ -32,11 +32,10 @@ const DepartmentsPage = () => {
         .catch(err =>{
             console.log(err);
         })
-
-        fetch("http://localhost:5000/departments/count")
+        fetch("http://localhost:5000/departments/count/number")
         .then(res => res.json())
         .then(data => {
-            setItems(data)
+            setItems(data.count)
         })
     }, [currentPage, limit, search]);
 
@@ -48,7 +47,13 @@ const DepartmentsPage = () => {
         const total_emp = form.number.value;
         const departmentData = {dept_name, dept_head, total_emp};
         
-        axiosSecure.post("/departments", departmentData)
+        fetch("/departments", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(departmentData)
+        })
         .then(res =>{
             console.log(res.data)
             toast.success("Successfully Created");
@@ -63,6 +68,25 @@ const DepartmentsPage = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
+        })
+    }
+
+    // deleting a department
+    const handleDeleteDepartment = async(id) =>{
+        fetch(`http://localhost:5000/departments/${id}`, {
+            method: "DELETE", 
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.success === true){
+                
+                Swal.fire({
+                    backdrop: true,
+                    timer: 1500,
+                    title: "Deleted Successfully"
+                })
+            }
         })
     }
 
@@ -151,7 +175,7 @@ const DepartmentsPage = () => {
                         <td>{department?.total_emp}</td>
                         <td className='flex gap-2'>
                             <Link href={`/dashboard/departments/${department._id}`}><button className='btn btn-square bg-yellow-500 hover:bg-yellow-600 text-white'><FaPen /></button></Link>
-                            <button className='btn btn-square bg-red-500 hover:bg-red-600 text-white'><FaRegTrashAlt /></button>
+                            <button className='btn btn-square bg-red-500 hover:bg-red-600 text-white' onClick={() =>handleDeleteDepartment(department?._id)}><FaRegTrashAlt /></button>
                         </td>
                     </tr>)
                     }
