@@ -74,7 +74,7 @@ const DepartmentsPage = () => {
     // deleting a department
     const handleDeleteDepartment = async(id) =>{
         fetch(`http://localhost:5000/departments/${id}`, {
-            method: "DELETE", 
+            method: "DELETE"
         })
         .then(res => res.json())
         .then(data => {

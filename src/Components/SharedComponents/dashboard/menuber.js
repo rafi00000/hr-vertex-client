@@ -17,33 +17,24 @@ import { usePathname } from 'next/navigation';
 import { FaBriefcase, FaPeopleGroup } from "react-icons/fa6";
 import { FaProjectDiagram } from "react-icons/fa";
 import { AiOutlineTeam } from "react-icons/ai";
+
+import { BsCashCoin } from "react-icons/bs";
 import { GrSubtractCircle } from 'react-icons/gr';
 import { MdCreateNewFolder } from 'react-icons/md';
 
 const Menuber = () => {
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
-  const [isAdmin, setIsAdmin] = useState({});
-  const [IsOpen, setIsOpen] = useState(false);
   const [IsOpen1, setIsOpen1] = useState(false);
-  console.log(user)
-  useEffect(() => {
-    fetch(`https://hr-vertex-server.vercel.app/users/${user?.email}`)
-      .then(res => res.json())
-      .then(data => {
-        setIsAdmin(data);
-      })
-  }, [user?.email])
-
   return (
     <div
-      className={`pl-5 bg-emerald-200 md:min-h-screen p-3 shadow-2xl relative ${show ? 'h-auto' : 'h-[65px]'} overflow-hidden`}
+      className={`pl-5 bg-emerald-200 h-screen p-3 shadow-2xl relative ${show ? 'h-auto' : 'h-[65px]'} overflow-y-auto`}
     >
       <div className='flex justify-start items-center  gap-4 border-b border-black pb-3'>
         {
           user?.photoURL && <Image
             className='w-10 h-10 object-cover rounded-full'
-            src={user?.photoURL}
+            src={user?.photo}
             height={500}
             width={500}
             alt='profile image'
@@ -51,7 +42,7 @@ const Menuber = () => {
         }
 
         <span className='flex flex-col justify-start items-start gap-0'>
-          <p className='text-lg font-bold'>{user?.displayName}</p>
+          <p className='text-lg font-bold'>{user?.FullName}</p>
           <a className='-mt-1 text-xs' href='mailto:useremail'>
             {user?.email}
           </a>
@@ -111,6 +102,12 @@ const Menuber = () => {
           <RiFileCopy2Fill className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/applications`}>
             applications
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <BsCashCoin className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/allloanrequest`}>
+          loan request
           </Link>
         </li>
 
@@ -177,5 +174,6 @@ const Menuber = () => {
     </div>
   );
 };
+
 
 export default Menuber;
