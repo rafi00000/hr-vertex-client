@@ -14,6 +14,7 @@ const AddEmployees = () => {
     const { createUserEmail } = useContext(coreContext);
     const image_hosting_api = `https://api.imgbb.com/1/upload?key=5201d474546c521dc75dd9c96eea7a84`;
     const HandelSubmit = async (e) => {
+        setloading(true)
         e.preventDefault()
         const form = e.target;
         const FullName = form.FullName.value;
@@ -55,7 +56,7 @@ const AddEmployees = () => {
         if (res.data.success) {
             const responce = await DataPost('users', info)
             console.log(responce)
-            if (responce.data?.success) {
+            if (responce?.success) {
                 e.target.reset()
                 setloading(false);
                 Swal.fire({
@@ -150,8 +151,8 @@ const AddEmployees = () => {
                             </select>
                         </div>
                         <div>
-                            <label class="block  text-sm font-medium text-gray-900 "> Gender:</label>
-                            <select required name="Gender" id="small" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
+                            <label className="block  text-sm font-medium text-gray-900 "> Gender:</label>
+                            <select required name="Gender" id="small" className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
                                 <option selected>Choose one</option>
                                 <option value={'Male'}>Male</option>
                                 <option value={'Female'}>Female</option>

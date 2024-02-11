@@ -14,17 +14,24 @@ import { FaPlus } from 'react-icons/fa';
 import { GrFormSubtract } from "react-icons/gr";
 import { MdOutlinePeopleAlt } from 'react-icons/md';
 import { usePathname } from 'next/navigation';
-import { FaPeopleGroup } from "react-icons/fa6";
+import { FaBriefcase, FaPeopleGroup } from "react-icons/fa6";
+import { LiaNotesMedicalSolid } from "react-icons/lia";
+
 import { FaProjectDiagram } from "react-icons/fa";
 import { AiOutlineTeam } from "react-icons/ai";
+
+import { BsCashCoin } from "react-icons/bs";
 import { GrSubtractCircle } from 'react-icons/gr';
 import { MdCreateNewFolder } from 'react-icons/md';
+
 const Menuber = () => {
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
   const [isAdmin, setIsAdmin] = useState({});
-  const [IsOpen, setIsOpen] = useState(false);
+
   const [IsOpen1, setIsOpen1] = useState(false);
+  const [IsOpen2, setIsOpen2] = useState(false);
+
   console.log(user)
   useEffect(() => {
     fetch(`https://hr-vertex-server.vercel.app/users/${user?.email}`)
@@ -36,13 +43,13 @@ const Menuber = () => {
 
   return (
     <div
-      className={`pl-5 bg-emerald-200 md:min-h-screen p-3 shadow-2xl relative ${show ? 'h-auto' : 'h-[65px]'} overflow-hidden`}
+      className={`pl-5 bg-emerald-200 h-screen p-3 shadow-2xl relative ${show ? 'h-auto' : 'h-[65px]'} overflow-y-auto`}
     >
       <div className='flex justify-start items-center  gap-4 border-b border-black pb-3'>
         {
           user?.photoURL && <Image
             className='w-10 h-10 object-cover rounded-full'
-            src={user?.photoURL}
+            src={user?.photo}
             height={500}
             width={500}
             alt='profile image'
@@ -50,7 +57,7 @@ const Menuber = () => {
         }
 
         <span className='flex flex-col justify-start items-start gap-0'>
-          <p className='text-lg font-bold'>{user?.displayName}</p>
+          <p className='text-lg font-bold'>{user?.FullName}</p>
           <a className='-mt-1 text-xs' href='mailto:useremail'>
             {user?.email}
           </a>
@@ -70,10 +77,36 @@ const Menuber = () => {
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <ImProfile className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/employees`}>
+            Employees
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <FaBriefcase className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/departments`}>
+            Departments
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <ImProfile className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/attendanceAll`}>
+            Attendance Reports
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <ImProfile className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/attendanceOne`}>
+            Attendance
+          </Link>
+        </li>
+        
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <ImProfile className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/employee`}>
             employees
           </Link>
         </li>
+
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <RiUserSearchFill className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/recruitment`}>
@@ -86,6 +119,12 @@ const Menuber = () => {
             applications
           </Link>
         </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <BsCashCoin className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/allloanrequest`}>
+          loan request
+          </Link>
+        </li>
 
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <FaPeopleGroup className='text-xl' />
@@ -93,18 +132,41 @@ const Menuber = () => {
             All Clients
           </Link>
         </li>
-        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
-          <FaProjectDiagram className='text-xl' />
-          <Link className='p-3 w-full' href={`/dashboard/projects`}>
-            projects
-          </Link>
+
+
+        <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+
+          <LiaNotesMedicalSolid size={30} className="text-xl" />
+          <p onClick={() => setIsOpen2((pre) => !pre)} className="p-3 pl-3 w-full" >
+            Leave Requests
+          </p>
+          {
+            !IsOpen2 ? <span><FaPlus size={11} className="text-xl" /></span> : <span><GrFormSubtract size={20} className="text-xl" /></span>
+          }
         </li>
-        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
-          <AiOutlineTeam className='text-xl' />
-          <Link className='p-3 w-full' href={`/dashboard/teams`}>
-            teams
-          </Link>
-        </li>
+
+        {
+          IsOpen2 &&
+          <ul>
+            <Link href={`/dashboard/allLeave`}>
+              <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+                <p className="p-3 text-sm pl-10 w-full" >
+                  All Leave Request
+                </p>
+              </li>
+            </Link>
+            <Link href={`/dashboard/addEmployee`}>
+              <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+                <p className="p-3 text-sm pl-10 w-full" >
+                 Leave Types
+                </p>
+              </li>
+            </Link>
+          </ul>
+        }
+
+
+     
 
         <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
 
@@ -150,5 +212,6 @@ const Menuber = () => {
     </div>
   );
 };
+
 
 export default Menuber;

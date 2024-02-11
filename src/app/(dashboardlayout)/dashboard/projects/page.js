@@ -130,7 +130,7 @@ const usePage = () => {
           </div>
           <div className="flex flex-col items-center p-3">
             <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
-            <span className="text-sm text-gray-500 dark:text-gray-400">s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset s </span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset s </span>
             <p className="w-full">team leader</p>
             <div className="flex justify-start items-center flex-wrap gap-0 mt-4 md:my-2 w-full">
             <Image width={30} height={30} alt="team leader " className="w-10 h-10 rounded-full" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -152,7 +152,7 @@ const usePage = () => {
           </div>
           <div className="flex flex-col items-center p-3">
             <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
-            <span className="text-sm text-gray-500 dark:text-gray-400">s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset s </span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset s </span>
             <p className="w-full">team leader</p>
             <div className="flex justify-start items-center flex-wrap gap-0 mt-4 md:my-2 w-full">
             <Image width={30} height={30} alt="team leader " className="w-10 h-10 rounded-full" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -174,7 +174,7 @@ const usePage = () => {
           </div>
           <div className="flex flex-col items-center p-3">
             <h5 className="mb-1 text-xl font-medium text-gray-900 ">Bonnie Green</h5>
-            <span className="text-sm text-gray-500 dark:text-gray-400">s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset s </span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset s </span>
             <p className="w-full">team leader</p>
             <div className="flex justify-start items-center flex-wrap gap-0 mt-4 md:my-2 w-full">
             <Image width={30} height={30} alt="team leader " className="w-10 h-10 rounded-full" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
