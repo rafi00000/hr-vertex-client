@@ -12,7 +12,6 @@ const usePage = async () => {
                 <span className="flex justify-end items-center py-3 pr-4"><Link className="btn bg-emerald-400" href={'addholyday'}>add new</Link></span>
                 <div className="overflow-x-auto">
                     <table className="table">
-                        {/* head */}
                         <thead>
                             <tr>
                                 <th>progile</th>
