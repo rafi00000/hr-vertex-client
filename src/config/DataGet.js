@@ -6,7 +6,7 @@ const DataGet = async (apiLink) => {
         // headers: {
         //     'Content-Type': 'application/json',
         // },
-        next: { revalidate: 3600 }
+        next: { revalidate: 10 }
     })
     return await res.json()
 }

@@ -14,17 +14,33 @@ import { FaPlus } from 'react-icons/fa';
 import { GrFormSubtract } from "react-icons/gr";
 import { MdOutlinePeopleAlt } from 'react-icons/md';
 import { usePathname } from 'next/navigation';
-import { FaPeopleGroup } from "react-icons/fa6";
+import { FaBriefcase, FaPeopleGroup } from "react-icons/fa6";
+import { LiaNotesMedicalSolid } from "react-icons/lia";
+
 import { FaProjectDiagram } from "react-icons/fa";
 import { AiOutlineTeam } from "react-icons/ai";
 
 import { BsCashCoin } from "react-icons/bs";
 import { GrSubtractCircle } from 'react-icons/gr';
 import { MdCreateNewFolder } from 'react-icons/md';
+
 const Menuber = () => {
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
+  const [isAdmin, setIsAdmin] = useState({});
+
   const [IsOpen1, setIsOpen1] = useState(false);
+  const [IsOpen2, setIsOpen2] = useState(false);
+
+  console.log(user)
+  useEffect(() => {
+    fetch(`https://hr-vertex-server.vercel.app/users/${user?.email}`)
+      .then(res => res.json())
+      .then(data => {
+        setIsAdmin(data);
+      })
+  }, [user?.email])
+
   return (
     <div
       className={`pl-5 bg-emerald-200 h-screen p-3 shadow-2xl relative ${show ? 'h-auto' : 'h-[65px]'} overflow-y-auto`}
@@ -61,10 +77,36 @@ const Menuber = () => {
         </li>
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <ImProfile className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/employees`}>
+            Employees
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <FaBriefcase className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/departments`}>
+            Departments
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <ImProfile className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/attendanceAll`}>
+            Attendance Reports
+          </Link>
+        </li>
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <ImProfile className='text-xl' />
+          <Link className='p-3 w-full' href={`/dashboard/attendanceOne`}>
+            Attendance
+          </Link>
+        </li>
+        
+        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
+          <ImProfile className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/employee`}>
             employees
           </Link>
         </li>
+
         <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
           <RiUserSearchFill className='text-xl' />
           <Link className='p-3 w-full' href={`/dashboard/recruitment`}>
@@ -90,18 +132,41 @@ const Menuber = () => {
             All Clients
           </Link>
         </li>
-        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
-          <FaProjectDiagram className='text-xl' />
-          <Link className='p-3 w-full' href={`/dashboard/projects`}>
-            projects
-          </Link>
+
+
+        <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+
+          <LiaNotesMedicalSolid size={30} className="text-xl" />
+          <p onClick={() => setIsOpen2((pre) => !pre)} className="p-3 pl-3 w-full" >
+            Leave Requests
+          </p>
+          {
+            !IsOpen2 ? <span><FaPlus size={11} className="text-xl" /></span> : <span><GrFormSubtract size={20} className="text-xl" /></span>
+          }
         </li>
-        <li className='flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md '>
-          <AiOutlineTeam className='text-xl' />
-          <Link className='p-3 w-full' href={`/dashboard/teams`}>
-            teams
-          </Link>
-        </li>
+
+        {
+          IsOpen2 &&
+          <ul>
+            <Link href={`/dashboard/allLeave`}>
+              <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+                <p className="p-3 text-sm pl-10 w-full" >
+                  All Leave Request
+                </p>
+              </li>
+            </Link>
+            <Link href={`/dashboard/addEmployee`}>
+              <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
+                <p className="p-3 text-sm pl-10 w-full" >
+                 Leave Types
+                </p>
+              </li>
+            </Link>
+          </ul>
+        }
+
+
+     
 
         <li className="flex justify-start items-center gap-2 hover:bg-emerald-500 hover:text-white duration-500 px-3 rounded-md ">
 
