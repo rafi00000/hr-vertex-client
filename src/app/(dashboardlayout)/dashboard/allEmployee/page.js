@@ -1,6 +1,7 @@
 "use client";
 
 import useAxiosSecure from "@/axiosConfig/useAxiosSecure";
+import Image from "next/image";
 import Link from "next/link";
 import { FaEdit } from "react-icons/fa";
 import { MdAutoDelete } from "react-icons/md";
@@ -77,7 +78,7 @@ const usePage = async () => {
                                     <th>
                                         <div className="avatar border rounded-full p-1 bg-white">
                                             <div className="w-10  rounded-full">
-                                                <img src={item?.photo} />
+                                                <Image height={100} width={100} src={item?.photo} />
                                             </div>
                                         </div>
                                     </th>

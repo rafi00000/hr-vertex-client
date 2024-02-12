@@ -1,5 +1,3 @@
-import React from 'react'
-
 const DataGet = async (apiLink) => {
     const res = await fetch(`http://localhost:5000/${apiLink}`, {
         // method: 'GET',

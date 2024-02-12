@@ -1,33 +1,26 @@
 'use client'
-
-import DataGet from "@/config/DataGet";
-import DataPost from "@/config/DataPost";
-import { coreContext } from "@/provider/AuthContext"
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useContext, useState } from "react"
+import DataGet from '@/config/DataGet';
+import DataPost from '@/config/DataPost';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React from 'react'
+import { FaEdit } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
 import { TiPlus } from "react-icons/ti";
-import Swal from "sweetalert2";
-import { FaEdit } from "react-icons/fa";
-import { FaCheck } from "react-icons/fa";
-import { PiWarningOctagonFill } from "react-icons/pi";
+import Swal from 'sweetalert2';
 const usePage = async () => {
-    const router = useRouter()
-    const { user } = useContext(coreContext)
-    const LoanData = await DataGet(`loan?user=${user?.email}`)
-    // console.log(LoanData)
+    const router = useRouter();
+    const holidaysData = await DataGet('holidays')
     const handleForm = async (e) => {
         e.preventDefault();
         const form = e.target;
-        const amount = form.amount.value;
-        const reason = form.reason.value;
+        const total = form.total.value;
+        const holiday = form.holiday.value;
         const date = form.date.value;
-        const data = { reason, amount, date, user: user?._id }
-        if (!data.user) {
-            return
-        } else {
-            const res = await DataPost('loan', data)
+        const data = { total, holiday, date }
+        console.log(data)
+        const res = await DataPost('holidays', data)
+        if (res.success) {
             e.target.reset()
             Swal.fire({
                 position: "top-end",
@@ -36,32 +29,28 @@ const usePage = async () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-            console.log(res)
             router.refresh()
         }
-
     };
-
-    // console.log(user)
     return (
         <div className='p-6'>
             <div className='flex justify-between items-center'>
                 <div>
-                    <h1 className='font-bold'>loan</h1>
-                    <h1 className='text-sm pt-1'>dashboard / loan</h1>
+                    <h1 className='font-bold'>Holydays</h1>
+                    <h1 className='text-sm pt-1'>dashboard / Holydays</h1>
                 </div>
                 <div className='flex items-center gap-3'>
                     <button className="btn btn-sm bg-red-700 text-white" onClick={() => document.getElementById('my_modal_3').showModal()}>
-                        <span><TiPlus></TiPlus></span> Add loan</button>
+                        <span><TiPlus></TiPlus></span> Add Holyday</button>
 
                     <dialog id="my_modal_3" className="modal">
                         <div className="modal-box">
                             <form method="dialog">
-                                <h1 className="font-bold text-xl text-center"> loan request</h1>
+                                <h1 className="font-bold text-xl text-center"> Holydays</h1>
                                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 bg-red-700 text-white">✕</button>
                             </form>
                             <div className="mt-5">
-                                <h4 className="text-3xl py-4 text-center font-semibold"> LOAN REQUEST </h4>
+                                <h4 className="text-3xl py-4 text-center font-semibold">add Holyday </h4>
                                 <form className="space-y-4" onSubmit={handleForm}>
                                     <div className="form-control w-full">
                                         <label className="text-md font-semibold">DATE</label>
@@ -73,29 +62,30 @@ const usePage = async () => {
                                         />
                                     </div>
                                     <div className="form-control w-full">
-                                        <label className="text-md font-semibold">AMOUNT</label>
+                                        <label className="text-md font-semibold">HOLIDAY NAME</label>
                                         <input
-                                            type="number"
-                                            placeholder="AMOUNT"
+                                            type="text"
+                                            placeholder="HOLIDAY NAME"
                                             className="input input-bordered"
-                                            name="amount"
+                                            name="holiday"
                                         />
                                     </div>
                                     <div className="form-control w-full">
-                                        <label className="text-md font-semibold">REASON FOR LOAN</label>
-                                        <textarea
+                                        <label className="text-md font-semibold">TOTAL</label>
+                                        <input
                                             type="text"
-                                            placeholder="REASON FOR LOAN"
+                                            placeholder="HOLIDAY NAME"
                                             className="input input-bordered"
-                                            name="reason"
+                                            name="total"
                                         />
                                     </div>
+
                                     <div className="flex  justify-center">
                                         <button
                                             type="submit"
                                             className="font-bold btn mt-9  bg-white w-full"
                                         >
-                                            REQUEST
+                                            ADD
                                         </button>
                                     </div>
                                 </form>
@@ -125,46 +115,38 @@ const usePage = async () => {
                     {/* head */}
                     <thead>
                         <tr className='font-bold text-black bg-slate-300'>
-                            <th>photo</th>
-                            <th>name</th>
-                            <th>email</th>
-                            <th>amount</th>
+                            <th></th>
+                            <th>holiday</th>
                             <th>date</th>
-                            <th>reason</th>
+                            <th>total</th>
                             <th>actions</th>
-                        </tr>
 
+                        </tr>
+                        {/* { total, holiday, date } */}
                     </thead>
                     <tbody>
                         {
-                            LoanData?.map(item =>
+                            holidaysData?.map((item, index) =>
                                 <tr key={item?._id} >
                                     <td>
-                                        <Image className="w-10 h-10 rounded-full" height={50} width={50} src={item?.user?.photo} />
+                                        {index + 1}
                                     </td>
                                     <td>
-                                        {item?.user?.FullName}
+                                        {item?.holiday}
                                     </td>
                                     <td>
-                                        {item?.user?.email}
-                                    </td>
-                                    <td className="font-bold">
-                                        {item?.amount}
-                                    </td>
-                                    <td className="font-semibold">
                                         {item?.date.split('T')[0]}
                                     </td>
-                                    <td>
-                                        {item?.reason}
+                                    <td className="font-bold">
+                                        {item?.total}
                                     </td>
+
                                     <td>
                                         <Link href={`/dashboard/allEmployee/${item?._id}`}>
                                             <button className="btn btn-ghost btn-xs border"><FaEdit size={20} color='green'></FaEdit>
                                             </button>
                                         </Link>
-                                        <button className="btn btn-ghost btn-xs border"><FaCheck size={20} color='green'></FaCheck>
-                                        </button>
-                                        <button onClick={() => handleDeleted(item?._id)} className="btn btn-ghost btn-xs border"><PiWarningOctagonFill size={20} color='red'></PiWarningOctagonFill></button>
+                                        <button onClick={() => handleDeleted(item?._id)} className="btn btn-ghost btn-xs border"><MdDelete size={20} color='red'></MdDelete></button>
                                     </td>
                                 </tr>)
                         }
@@ -174,9 +156,6 @@ const usePage = async () => {
             </div>
         </div >
     )
-
-
-
 }
 
 export default usePage

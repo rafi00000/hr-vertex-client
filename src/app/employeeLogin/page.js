@@ -5,22 +5,19 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import Swal from "sweetalert2";
-import useAxiosRequest from './../../axiosConfig/useAxiosRequest';
+import DataGet from "@/config/DataGet";
 
 const EmployeeLogin = () => {
 
   const { logIn, createUserEmail } = useContext(coreContext);
   const router = useRouter();
   const [show, setShow] = useState(false)
-  const axiosPublic = useAxiosRequest();
-
-
-    const handleEmployeeLogin = (e) =>{
+    const handleEmployeeLogin = async(e) =>{
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        try {
+        // console.log(email)
         logIn(email, password)
             .then((data) => {
             const user = data.user;
@@ -33,16 +30,13 @@ const EmployeeLogin = () => {
           });
           router.push("/dashboard");
         })
-        .catch((error) => {~
-
-          axiosPublic.get(`/users/${email}`)
-          .then(res => {
-            const user = res.data.data;
+        .catch(async(error) => {
+  ;
+         const res = await DataGet(`users/${email}`)
+            const user = res?.data;
             const name = user?.FullName; 
-            const password = user?._id;
             const photo = user?.photo;
-            console.log(user);
-            //if exist
+            // console.log(password,name,photo)
             if(user){
               createUserEmail(email, password)
               .then(data => {
@@ -59,6 +53,7 @@ const EmployeeLogin = () => {
                   showConfirmationButton: false,
                   timer: 1500,
                 })
+                router.push("/dashboard");
               })
               .catch(err => console.log("profile update error", err))
               })
@@ -77,14 +72,6 @@ const EmployeeLogin = () => {
               router.push("/");
             }
           })
-          // finished fetching user
-
-          .catch(err => router.push("/"));
-        });
-    }
-    catch (error) {
-      router.push("/")
-    }
   }
 
     return (

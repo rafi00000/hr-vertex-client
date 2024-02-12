@@ -1,47 +1,42 @@
 "use client";
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { TiPlus } from "react-icons/ti";
 import { BiListPlus } from "react-icons/bi";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { FaBan } from "react-icons/fa6";
 import useAxiosSecure from '@/axiosConfig/useAxiosSecure';
+import DataPost from '@/config/DataPost';
+import Swal from 'sweetalert2';
+import { coreContext } from '@/provider/AuthContext';
+import DataGet from '@/config/DataGet';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 
 
-const usePage = () => {
-
-
-
-    const axios = useAxiosSecure();
-
-
+const usePage = async () => {
+    const router = useRouter()
+    const { user } = useContext(coreContext)
+    const leaveData = await DataGet(`leave?user=${user?.email}`)
+    console.log(leaveData)
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
-        const Name = form.Name.value;
-        const email = form.email.value;
         const FormDate = form.FormDate.value;
         const ToDate = form.ToDate.value;
         const LeaveType = form.LeaveType.value;
         const Reason = form.Reason.value;
-
-
-
         const info = {
-            Name,
-            email,
+            user: user?._id,
             FormDate,
             ToDate,
             LeaveType,
             Reason,
         }
-        console.log(info);
-
-
         try {
-            const res = await axios.post('http://localhost:5000/Leave', info)
-            if (res.data?.success) {
+            const res = await DataPost('Leave', info)
+            if (res?.success) {
                 e.target.reset()
                 Swal.fire({
                     position: "top-end",
@@ -50,6 +45,7 @@ const usePage = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                router.refresh()
             }
         } catch (error) {
             console.log(error)
@@ -68,14 +64,6 @@ const usePage = () => {
                     <h1 className='text-sm pt-1'>dashboard / All Request</h1>
                 </div>
                 <div className='flex items-center gap-2 '>
-                    <div className='flex gap-2'>
-                        <div className='border bg-white p-1 rounded-sm'>
-                            <BiListPlus size={22}></BiListPlus>
-                        </div>
-                        <div className='border bg-white p-1 rounded-sm'>
-                            <BiListPlus size={22}></BiListPlus>
-                        </div>
-                    </div>
                     <button className="btn btn-sm bg-red-700 text-white" onClick={() => document.getElementById('my_modal_3').showModal()} >
                         <span><TiPlus></TiPlus></span>  Add Request
                     </button>
@@ -89,14 +77,7 @@ const usePage = () => {
                             <div className="mt-5">
                                 <form onSubmit={handleSubmit}>
                                     <div className="grid gap-6 mb-6 md:grid-cols-2">
-                                        <div>
-                                            <label className="block mb-2 text-sm font-medium text-gray-900 "> Name :</label>
-                                            <input type="text" name="Name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Name" required />
-                                        </div>
-                                        <div>
-                                            <label className="block mb-2 text-sm font-medium text-gray-900 ">Email :</label>
-                                            <input type="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="email" required />
-                                        </div>
+
                                         <div>
                                             <label className="block mb-2 text-sm font-medium text-gray-900 ">Form Date :</label>
                                             <input type="date" name="FormDate" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Form Date" required />
@@ -154,153 +135,46 @@ const usePage = () => {
                     {/* head */}
                     <thead className='bg-zinc-300 '>
                         <tr className='font-bold text-black'>
-                            <th></th>
+                            <th>profile</th>
                             <th>Name</th>
+                            <th>email</th>
                             <th>Leave Type</th>
                             <th>Date</th>
                             <th>Reason</th>
                             <th>Action</th>
-
                         </tr>
-
                     </thead>
                     <tbody >
-
-                        <tr className=''>
-                            <th>
-                                <div className="avatar border rounded-full p-1 bg-white">
-                                    <div className="w-9  rounded-full">
-                                        <img src="https://i.ibb.co/7t2zYJY/handsome-corporate-man-real-estate-agent-assistant-smiling-hold-hands-together-how-may-i-help-you-sm.jpg" />
+                        {
+                            leaveData.map((item, index) => <tr key={item?._id} className=''>
+                                <th>
+                                    <div className="avatar border rounded-full p-1 bg-white">
+                                        <div className="w-9  rounded-full">
+                                            <Image className="w-10 h-10 rounded-full" height={50} width={50} src={item?.user?.photo} />
+                                        </div>
                                     </div>
-                                </div>
-                            </th>
-                            <td>Riad Jowarde </td>
+                                </th>
+                                <td> {item?.user?.FullName}</td>
+                                <td>   {item?.user?.email}</td>
 
-                            <td> Casual Leave</td>
-                            <td> 12-02-2024 <span className='text-base'> To </span> 12-02-2024 </td>
-                            <td>Family Problem</td>
-                            <td className='flex'>
+                                <td>{item?.LeaveType}</td>
+                                <td> {item?.FormDate.split('T')[0]} <span className='text-base'> To </span> {item?.ToDate.split('T')[0]} </td>
+                                <td>{item?.Reason}</td>
+                                <td className='flex'>
 
-                                <button className=" btn-xs">
-                                    <BsCheckSquareFill size={30} color='green'></BsCheckSquareFill>
-                                </button>
-                                <div style={{ border: "2px solid red" }} className=' rounded-lg '>
-                                    <button className=" btn-xs pl-2 py-[7px]">
-                                        <FaBan size={15} color='red'></FaBan>
+                                    <button className=" btn-xs">
+                                        <BsCheckSquareFill size={30} color='green'></BsCheckSquareFill>
                                     </button>
+                                    <div style={{ border: "2px solid red" }} className=' rounded-lg '>
+                                        <button className=" btn-xs pl-2 py-[7px]">
+                                            <FaBan size={15} color='red'></FaBan>
+                                        </button>
 
-                                </div>
-                            </td>
-                        </tr>
-
-
-                        <tr className=''>
-                            <th>
-                                <div className="avatar border rounded-full p-1 bg-white">
-                                    <div className="w-9  rounded-full">
-                                        <img src="https://i.ibb.co/7t2zYJY/handsome-corporate-man-real-estate-agent-assistant-smiling-hold-hands-together-how-may-i-help-you-sm.jpg" />
                                     </div>
-                                </div>
-                            </th>
-                            <td>Riad Jowarde </td>
-
-                            <td> Casual Leave</td>
-                            <td> 12-02-2024 <span className='text-base'> To </span> 12-02-2024 </td>
-                            <td>Family Problem</td>
-                            <td className='flex'>
-
-                                <button className=" btn-xs">
-                                    <BsCheckSquareFill size={30} color='green'></BsCheckSquareFill>
-                                </button>
-                                <div style={{ border: "2px solid red" }} className=' rounded-lg '>
-                                    <button className=" btn-xs pl-2 py-[7px]">
-                                        <FaBan size={15} color='red'></FaBan>
-                                    </button>
-
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr className=''>
-                            <th>
-                                <div className="avatar border rounded-full p-1 bg-white">
-                                    <div className="w-9  rounded-full">
-                                        <img src="https://i.ibb.co/7t2zYJY/handsome-corporate-man-real-estate-agent-assistant-smiling-hold-hands-together-how-may-i-help-you-sm.jpg" />
-                                    </div>
-                                </div>
-                            </th>
-                            <td>Riad Jowarde </td>
-
-                            <td> Casual Leave</td>
-                            <td> 12-02-2024 <span className='text-base'> To </span> 12-02-2024 </td>
-                            <td>Family Problem</td>
-                            <td className='flex'>
-
-                                <button className=" btn-xs">
-                                    <BsCheckSquareFill size={30} color='green'></BsCheckSquareFill>
-                                </button>
-                                <div style={{ border: "2px solid red" }} className=' rounded-lg '>
-                                    <button className=" btn-xs pl-2 py-[7px]">
-                                        <FaBan size={15} color='red'></FaBan>
-                                    </button>
-
-                                </div>
-                            </td>
-                        </tr>
-                        
-                        <tr className=''>
-                            <th>
-                                <div className="avatar border rounded-full p-1 bg-white">
-                                    <div className="w-9  rounded-full">
-                                        <img src="https://i.ibb.co/7t2zYJY/handsome-corporate-man-real-estate-agent-assistant-smiling-hold-hands-together-how-may-i-help-you-sm.jpg" />
-                                    </div>
-                                </div>
-                            </th>
-                            <td>Riad Jowarde </td>
-
-                            <td> Casual Leave</td>
-                            <td> 12-02-2024 <span className='text-base'> To </span> 12-02-2024 </td>
-                            <td>Family Problem</td>
-                            <td className='flex'>
-
-                                <button className=" btn-xs">
-                                    <BsCheckSquareFill size={30} color='green'></BsCheckSquareFill>
-                                </button>
-                                <div style={{ border: "2px solid red" }} className=' rounded-lg '>
-                                    <button className=" btn-xs pl-2 py-[7px]">
-                                        <FaBan size={15} color='red'></FaBan>
-                                    </button>
-
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr className=''>
-                            <th>
-                                <div className="avatar border rounded-full p-1 bg-white">
-                                    <div className="w-9  rounded-full">
-                                        <img src="https://i.ibb.co/7t2zYJY/handsome-corporate-man-real-estate-agent-assistant-smiling-hold-hands-together-how-may-i-help-you-sm.jpg" />
-                                    </div>
-                                </div>
-                            </th>
-                            <td>Riad Jowarde </td>
-
-                            <td> Casual Leave</td>
-                            <td> 12-02-2024 <span className='text-base'> To </span> 12-02-2024 </td>
-                            <td>Family Problem</td>
-                            <td className='flex'>
-
-                                <button className=" btn-xs">
-                                    <BsCheckSquareFill size={30} color='green'></BsCheckSquareFill>
-                                </button>
-                                <div style={{ border: "2px solid red" }} className=' rounded-lg '>
-                                    <button className=" btn-xs pl-2 py-[7px]">
-                                        <FaBan size={15} color='red'></FaBan>
-                                    </button>
-
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                            )
+                        }
 
                     </tbody>
                 </table>
@@ -317,10 +191,10 @@ const usePage = () => {
                         </li>
                         <li>
                             <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                        </li>                                  
+                        </li>
                         <li>
                             <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
-                        </li>                                  
+                        </li>
                         <li>
                             <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
                         </li>

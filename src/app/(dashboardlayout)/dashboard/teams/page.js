@@ -10,16 +10,18 @@ import DataGet from "@/config/DataGet";
 import { useRouter } from "next/navigation";
 import { FaPlus } from "react-icons/fa";
 import Datapatch from "@/config/Datapatch";
+import Swal from "sweetalert2";
 const usePage = async () => {
   // const [submiting, setsubmiting] = useState(false)
   const router = useRouter()
   const teamData = await DataGet('team')
+  // const [data,setdata]=useState('')
   // console.log(teamData)
-  const addMember = async (e, _id ,teamname) => {
+  const addMember = async (e, _id, teamname) => {
     const memberId = e.target.member.value
-    const info = { memberId, _id ,teamname}
+    const info = { memberId, _id, teamname }
     try {
-      const res = await Datapatch('team',info)
+      const res = await Datapatch('team', info)
       console.log(res)
       if (res?.success) {
         e.target.reset()
@@ -143,6 +145,30 @@ const usePage = async () => {
       <div className='md:grid grid-cols-3 mt-8 gap-4'>
         {
           teamData.map(item => <div key={item?._id} className=" bg-white border border-gray-200 rounded-lg shadow">
+            <dialog id={`addmember${item?.teamname}`} className="modal">
+              <div className="modal-box">
+                <form method="dialog">
+                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
+                <h3 className="font-bold text-lg text-center uppercase">team : {item?.teamname}</h3>
+                <p className="font-semibold  text-center ">add Member</p>
+                <form onSubmit={(e) => {
+                  e.preventDefault()
+                  addMember(e, item?._id, item?.teamname)
+                }}>
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900 ">member</label>
+                    <select name='member' className="select select-warning w-full" required>
+                      <option disabled selected>employees</option>
+                      <Suspense fallback="<option value=''>ongoing</option>">
+                        <EmployeeOption />
+                      </Suspense>
+                    </select>
+                  </div>
+                  <button className="btn m-2">submit</button>
+                </form>
+              </div>
+            </dialog>
             <div className="flex justify-end px-4 pt-4">
               <button id="dropdownButton" data-dropdown-toggle="dropdown" className="inline-block text-gray-500  rounded-lg text-sm p-1.5" type="button">
                 <span className="sr-only">Open dropdown</span>
@@ -164,38 +190,16 @@ const usePage = async () => {
                   item?.members.map(items=><p key={items}>pppp</p>)
                 } */}
                 {
-                  item?.members.map(item => <Image key={item?._id} width={30} height={30} alt="team member" className="w-10 h-10 rounded-full border-2 border-white" src={item?.photo} />)
+                  item?.members.length > 0 && item?.members.map(item => <Image key={item?._id} width={30} height={30} alt="team member" className="w-10 h-10 rounded-full border-2 border-white" src={item?.photo} />)
                 }
 
-                <span onClick={() => document.getElementById('addmember').showModal()} className="h-10 w-10 flex justify-center items-center rounded-full bg-gray-300 cursor-pointer">
+                <span onClick={() => document.getElementById(`addmember${item?.teamname}`).showModal()} className="h-10 w-10 flex justify-center items-center rounded-full bg-gray-300 cursor-pointer">
                   <FaPlus />
                 </span>
 
               </div>
             </div>
-            <dialog id="addmember" className="modal">
-              <div className="modal-box">
-                <form method="dialog">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                </form>
-                <h3 className="font-bold text-lg text-center">add member</h3>
-                <form onSubmit={(e) => {
-                  e.preventDefault()
-                  addMember(e, item?._id ,item?.teamname)
-                }}>
-                  <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900 ">member</label>
-                    <select name='member' className="select select-warning w-full" required>
-                      <option disabled selected>employees</option>
-                      <Suspense fallback="<option value=''>ongoing</option>">
-                        <EmployeeOption />
-                      </Suspense>
-                    </select>
-                  </div>
-                  <button className="btn m-2">submit</button>
-                </form>
-              </div>
-            </dialog>
+
           </div>)
         }
 

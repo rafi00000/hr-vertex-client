@@ -27,19 +27,8 @@ import { MdCreateNewFolder } from 'react-icons/md';
 const Menuber = () => {
   const { user } = useContext(coreContext);
   const [show, setshow] = useState(false);
-  const [isAdmin, setIsAdmin] = useState({});
-
   const [IsOpen1, setIsOpen1] = useState(false);
   const [IsOpen2, setIsOpen2] = useState(false);
-
-  console.log(user)
-  useEffect(() => {
-    fetch(`https://hr-vertex-server.vercel.app/users/${user?.email}`)
-      .then(res => res.json())
-      .then(data => {
-        setIsAdmin(data);
-      })
-  }, [user?.email])
 
   return (
     <div
@@ -47,7 +36,7 @@ const Menuber = () => {
     >
       <div className='flex justify-start items-center  gap-4 border-b border-black pb-3'>
         {
-          user?.photoURL && <Image
+          user?.photo && <Image
             className='w-10 h-10 object-cover rounded-full'
             src={user?.photo}
             height={500}
